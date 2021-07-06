@@ -1,0 +1,55 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.avatar {
+  transform: translateY(-3px);
+  border-radius: 50%;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  display: flex;
+  align-items: center;
+}
+
+.bt-active {
+  cursor: no-drop !important;
+}
+
+/* Image from details */
+.row.border-bottom.mx-0.p-2.justify-content-betwenn.align-items-center>div {
+  width: auto !important;
+}
+
+.order_detail-image:hover {
+  transform: scale(1.2);
+
+}
+
+.order_detail-image:hover img {
+  border: 2px solid #094e4dcc !important;
+
+}
+
+h5.flex-fill.text-secondary.px-3.m-0 {
+  width: 20% !important;
+}
+
+/* Loading */
+@import url("./Loading.mudule.css");
+@import url("./Product.component.css");
+@import url("./Profile.page.css");
+@import url("./ProductManager.page.css");
