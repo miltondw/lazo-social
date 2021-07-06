@@ -28,7 +28,7 @@ export default function Filter({ state }) {
           value={category}
           onChange={handleCategory}
         >
-          <option value="all">All Products</option>
+          <option value="all">Todos los Clubs</option>
 
           {categories.map((item) => (
             <option key={item._id} value={item.name}>
@@ -54,8 +54,8 @@ export default function Filter({ state }) {
           value={sort}
           onChange={handleSort}
         >
-          <option value="-createdAt">Newest</option>
-          <option value="oldest">Oldest</option>
+          <option value="-createdAt">Nuevos</option>
+          <option value="oldest">Antiguos</option>
           <option value="-sold">Best sales</option>
           <option value="-price">Price: Hight-Low</option>
           <option value="price">Price: Low-Hight</option>
