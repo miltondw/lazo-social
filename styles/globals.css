@@ -20,6 +20,12 @@ a {
   border-radius: 50%;
 }
 
+.logo {
+
+  cursor: pointer;
+
+}
+
 .navbar-light .navbar-nav .nav-link {
   display: flex;
   align-items: center;

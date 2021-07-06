@@ -26,14 +26,14 @@ export default function Navbar() {
   const adminRouter = () => {
     return (
       <>
-        <Link href="/users">
-          <a className="dropdown-item">Users</a>
+        <Link href="/usuarios">
+          <a className="dropdown-item">Usuarios</a>
         </Link>
-        <Link href="/create">
-          <a className="dropdown-item">Products</a>
+        <Link href="/crear">
+          <a className="dropdown-item">Crear alumno</a>
         </Link>
-        <Link href="/categories">
-          <a className="dropdown-item">Categories</a>
+        <Link href="/clubs">
+          <a className="dropdown-item">Clubs</a>
         </Link>
       </>
     );
@@ -61,15 +61,15 @@ export default function Navbar() {
         </a>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li>
-            <Link href="/profile">
-              <a className="dropdown-item">Profile</a>
+            <Link href="/perfil">
+              <a className="dropdown-item">Perfil</a>
             </Link>
             {auth.user.role === "admin" && adminRouter()}
           </li>
           <li>
             <div className="dropdown-divider"></div>
             <button className="dropdown-item" onClick={handleLogout}>
-              Logout
+              Cerrar sesión
             </button>
           </li>
         </ul>
@@ -80,7 +80,13 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <Link href="/">
-          <a className="navbar-brand">CDK</a>
+          <Image
+            src="https://res.cloudinary.com/daekebmip/image/upload/v1625269819/2F07089413BE4E9492D6B2302A63F5A0_grt44t.jpg"
+            alt="Logo Fundación Lazo Social"
+            width={120}
+            height={120}
+            className="logo"
+          />
         </Link>
         <button
           className="navbar-toggler"
@@ -98,46 +104,12 @@ export default function Navbar() {
           id="navbarNavDropdown"
         >
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link href="/">
-                <a className={"nav-link " + isActivo("/")} aria-current="page">
-                  Home
-                </a>
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link href="/cart">
-                <a className={"nav-link " + isActivo("/cart")}>
-                  <i
-                    className="fas fa-shopping-cart position-relative"
-                    aria-hidden="true"
-                  >
-                    <span
-                      style={{
-                        padding: "3px 6px",
-                        background: "#ed143dc2",
-                        borderRadius: "50%",
-                        top: "-10px",
-                        right: "-10px",
-                        color: "white",
-                        fontSize: "14px",
-                      }}
-                      className="position-absolute"
-                    >
-                      {cart.length}
-                    </span>
-                  </i>
-                  Cart
-                </a>
-              </Link>
-            </li>
             {Object.keys(auth).length === 0 ? (
               <li className="nav-item">
                 <Link href="/signin">
                   <a className={"nav-link " + isActivo("/signin")}>
                     <i className="fas fa-user"></i>
-                    Sign In
+                    Iniciar sesión
                   </a>
                 </Link>
               </li>
