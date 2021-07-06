@@ -22,16 +22,16 @@ const login = async (req, res) => {
 
     const user = await Users.findOne({ email });
     if (!user)
-      return res.status(400).json({ err: "This user does not exist." });
+      return res.status(400).json({ err: "Este usuario no existe." });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ err: "Incorrect Password." });
+    if (!isMatch) return res.status(400).json({ err: "Contraseña incorrecta." });
 
     const access_token = createAccessToken({ id: user._id });
     const refresh_token = createrefreshToken({ id: user._id });
 
     res.json({
-      msg: "Login success!",
+      msg: "Inicio de sesión exitosa!",
       access_token,
       refresh_token,
       user: {

@@ -18,11 +18,11 @@ const updateRole = async (req, res) => {
   try {
     const result = await auth(req, res);
     if (result.role !== "admin" || !result.root)
-      return res.status(400).json({ err: "Authentication is not valid" });
+      return res.status(400).json({ err: "La autenticación no es válida." });
     const { id } = req.query;
     const { role } = req.body;
     await Users.findOneAndUpdate({ _id: id }, { role });
-    res.json({ msg: "Updated success" });
+    res.json({ msg: "Actualizado" });
   } catch (err) {
     return res.status(500).json({ err: err.message });
   }
@@ -31,10 +31,10 @@ const deleteUser = async (req, res) => {
   try {
     const result = await auth(req, res);
     if (result.role !== "admin" || !result.root)
-      return res.status(400).json({ err: "Authentication is not valid" });
+      return res.status(400).json({ err: "La autenticación no es válida." });
     const { id } = req.query;
     await Users.findByIdAndDelete(id);
-    res.json({ msg: "User Deleted successfully" });
+    res.json({ msg: "Usuario eliminado exitosamente" });
   } catch (err) {
     return res.status(500).json({ err: err.message });
   }

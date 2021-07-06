@@ -94,7 +94,7 @@ export default function OrderDetail({ orderDetail, state, dispatch }) {
                   key={item._id}
                   style={{ maxWidth: "550px" }}
                 >
-                  <Link href={`/product/${item._id}`}>
+                  <Link href={`/alumno/${item._id}`}>
                     <a className="w-auto order_detail-image">
                       <Image
                         src={item.images[0].url}
@@ -110,7 +110,7 @@ export default function OrderDetail({ orderDetail, state, dispatch }) {
                   </Link>
 
                   <h5 className="flex-fill text-secondary px-3 m-0">
-                    <Link href={`/product/${item._id}`}>
+                    <Link href={`/alumno/${item._id}`}>
                       <a>{item.title}</a>
                     </Link>
                   </h5>

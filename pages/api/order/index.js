@@ -1,6 +1,6 @@
 import connectDB from "../../../utils/connectDB";
 import Orders from "../../../models/orderModel";
-import Products from "../../../models/productModel";
+import Alumnos from "../../../models/alumnoModel";
 import auth from "../../../middlewares/auth";
 
 connectDB();
@@ -57,7 +57,7 @@ const createOrder = async (req, res) => {
   }
 };
 const sold = async (id, quantity, oldInStock, oldSold) => {
-  await Products.findOneAndUpdate(
+  await Alumnos.findOneAndUpdate(
     { _id: id },
     {
       inStock: oldInStock - quantity,

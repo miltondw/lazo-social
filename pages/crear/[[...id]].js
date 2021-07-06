@@ -7,37 +7,42 @@ import { postData, getData, putData } from "../../utils/fetchData";
 
 export default function ProductsManager() {
   const initialState = {
-    title: "",
-    price: 0,
-    inStock: 0,
-    description: "",
-    content: "",
-    category: "",
+    nombre: "",
+    lastName: "",
+    cc: 0,
+    // dateOfBirth,
+    club: "",
+    phone: 0,
+    // dateOfEntry,
+    weight: 0,
+    size: 0,
+    observations: "",
   };
-  const [product, setProduct] = useState(initialState);
-  const { title, price, inStock, description, content, category } = product;
+  const [alumno, setAlumno] = useState(initialState);
+  const { nombre, lastName, cc, club, phone, weight, size, observations } =
+    alumno;
   const [images, setImages] = useState([]);
   const { state, dispatch } = useContext(DataContext);
-  const { categories, auth } = state;
+  const { clubs, auth } = state;
   const router = useRouter();
   const { id } = router.query;
   const [onEdit, setOnEdit] = useState(false);
   useEffect(() => {
     if (id) {
       setOnEdit(true);
-      getData(`product/${id}`).then((res) => {
-        setProduct(res.product);
-        setImages(res.product.images);
+      getData(`alumno/${id}`).then((res) => {
+        setAlumno(res.alumno);
+        setImages(res.alumno.images);
       });
     } else {
       setOnEdit(false);
-      setProduct(initialState);
+      setAlumno(initialState);
       setImages([]);
     }
   }, [id]);
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+    setAlumno({ ...alumno, [name]: value });
     dispatch({ type: "NOTIFY", payload: {} });
   };
   const handleUploadInput = (e) => {
@@ -49,15 +54,15 @@ export default function ProductsManager() {
     if (files.length === 0)
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Files does not exist." },
+        payload: { error: "Los archivos no existen." },
       });
 
     files.forEach((file) => {
       if (file.size > 1024 * 1024)
-        return (err = "The largest image size is 1mb");
+        return (err = "El tamaño de imagen maximo es de 1 MB");
 
       if (file.type !== "image/jpeg" && file.type !== "image/png")
-        return (err = "Image format is incorrect.");
+        return (err = "El formato de la imagen es incorrecto.");
 
       num += 1;
       if (num <= 5) newImages.push(file);
@@ -68,7 +73,7 @@ export default function ProductsManager() {
     if (imgCount + newImages.length > 5)
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Select up to 5 images." },
+        payload: { error: "Seleccione hasta 5 imágenes." },
       });
     setImages([...images, ...newImages]);
   };
@@ -82,21 +87,23 @@ export default function ProductsManager() {
     if (auth.user.role !== "admin")
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Authentication is not valid." },
+        payload: { error: "La autenticación no es válida." },
       });
 
     if (
-      !title ||
-      !price ||
-      !inStock ||
-      !description ||
-      !content ||
-      category === "all" ||
+      !nombre ||
+      !lastName ||
+      !cc ||
+      !club ||
+      !phone ||
+      !weight ||
+      !size ||
+      !observations ||
       images.length === 0
     )
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Please add all the fields." },
+        payload: { error: "Agregue todos los campos." },
       });
 
     dispatch({ type: "NOTIFY", payload: { loading: true } });
@@ -109,16 +116,16 @@ export default function ProductsManager() {
     let res;
     if (onEdit) {
       res = await putData(
-        `product/${id}`,
-        { ...product, images: [...imgOldURL, ...media] },
+        `alumno/${id}`,
+        { ...alumno, images: [...imgOldURL, ...media] },
         auth.token
       );
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
     } else {
       res = await postData(
-        "product",
-        { ...product, images: [...imgOldURL, ...media] },
+        "alumno",
+        { ...alumno, images: [...imgOldURL, ...media] },
         auth.token
       );
       if (res.err)
@@ -128,75 +135,105 @@ export default function ProductsManager() {
     return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
   };
   return (
-    <div className="products_manager">
+    <div className="alumnos_manager">
       <Head>
-        <title>Products Manager </title>
+        <title>Crear Alumno </title>
       </Head>
       <form className="row" onSubmit={handleSubmit}>
         <div className="col-md-6">
+          <div className="row">
+          <div className="col-md-6">
           <input
             type="text"
             className="d-block my-4 w-100 p-2"
-            name="title"
-            value={title}
-            placeholder="Title"
+            name="nombre"
+            value={nombre}
+            placeholder="Nombre"
             onChange={handleChangeInput}
           />
+          </div>
+          <div className="col-md-6">
+          <input
+            type="text"
+            className="d-block my-4 w-100 p-2"
+            name="lastName"
+            value={lastName}
+            placeholder="Apellido"
+            onChange={handleChangeInput}
+          />
+          </div>
+          </div>
           <div className="row">
             <div className="col-md-6">
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">C.I</label>
               <input
                 type="number"
                 className="d-block my-4 w-100 p-2"
-                name="price"
-                value={price}
-                placeholder="Price"
+                name="cc"
+                value={cc}
+                placeholder="C.I"
                 onChange={handleChangeInput}
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="inStock">In Stock</label>
+              <label htmlFor="inStock">Télefono</label>
 
               <input
                 type="number"
                 className="d-block my-4 w-100 p-2"
-                name="inStock"
-                value={inStock}
-                placeholder="In Stock"
+                name="phone"
+                value={phone}
+                placeholder="Télefono"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <label htmlFor="price">Peso</label>
+              <input
+                type="number"
+                className="d-block my-4 w-100 p-2"
+                name="weight"
+                value={weight}
+                placeholder="Peso"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="inStock">Estatura en "cm"</label>
+
+              <input
+                type="number"
+                className="d-block my-4 w-100 p-2"
+                name="size"
+                value={size}
+                placeholder="Estatura"
                 onChange={handleChangeInput}
               />
             </div>
           </div>
           <textarea
-            name="description"
-            id="description"
+            name="observations"
+            id="observations"
             cols="30"
             rows="4"
-            placeholder="Description"
+            placeholder="Observaciones"
             onChange={handleChangeInput}
             className="d-block my-4 w-100 p-2"
-            value={description}
+            value={observations}
           />
-          <textarea
-            name="content"
-            id="content"
-            cols="30"
-            rows="6"
-            placeholder="Content"
-            onChange={handleChangeInput}
-            className="d-block my-4 w-100 p-2"
-            value={content}
-          />
+
           <div className="input-group-prepend px-0 my-2">
             <select
-              name="category"
-              id="category"
-              value={category}
+              name="club"
+              id="club"
+              value={club}
               onChange={handleChangeInput}
               className="form-select text-capitalize"
             >
-              <option value="all">All Products</option>
-              {categories.map((item) => (
+              <option value="all">Todos los Clubs</option>
+              {clubs.map((item) => (
                 <option value={item.name} key={item._id}>
                   {item.name}
                 </option>
@@ -206,7 +243,7 @@ export default function ProductsManager() {
         </div>
         <div className="col-md-6">
           <div className="input-group mb-3">
-            <span className="input-group-text">Upload</span>
+            <span className="input-group-text">Subir</span>
             <input
               type="file"
               className="form-control"
@@ -229,7 +266,7 @@ export default function ProductsManager() {
           </div>
         </div>
         <button type="submit" className="btn btn-info mb-3 w-50 px-4 ">
-          {onEdit?'Update':'Create'}
+          {onEdit ? "Actualizar" : "Crear"}
         </button>
       </form>
     </div>

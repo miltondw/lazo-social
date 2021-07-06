@@ -12,7 +12,7 @@ export default function Users() {
   return (
     <div className="table-responsive">
       <Head>
-        <title>Users</title>
+        <title>Usuarios</title>
       </Head>
 
       <table className="table w-100">
@@ -21,10 +21,10 @@ export default function Users() {
             <th></th>
             <th>ID</th>
             <th>Avatar</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Admin</th>
-            <th>Action</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Profesor</th>
+            <th>Acción</th>
           </tr>
         </thead>
 
@@ -67,7 +67,7 @@ export default function Users() {
                   }
                 >
                   <a>
-                    <i className="fas fa-edit text-info mr-2" title="Edit"></i>
+                    <i className="fas fa-edit text-info mr-2" title="Editar"></i>
                   </a>
                 </Link>
 
@@ -94,7 +94,7 @@ export default function Users() {
                 ) : (
                   <i
                     className="fas fa-trash-alt text-danger ml-2 p-2"
-                    title="Remove"
+                    title="Eliminar"
                   ></i>
                 )}
               </th>

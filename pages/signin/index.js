@@ -59,7 +59,7 @@ export default function Signin() {
   return (
     <div>
       <Head>
-        <title>Sig in page</title>
+        <title>Página de inicio de sesión</title>
       </Head>
       <form
         className="mx-auto my-4"
@@ -68,7 +68,7 @@ export default function Signin() {
       >
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address
+          Dirección de correo
           </label>
           <input
             type="email"
@@ -82,7 +82,7 @@ export default function Signin() {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+            Contraseña
           </label>
           <input
             type="password"
@@ -94,13 +94,13 @@ export default function Signin() {
           />
         </div>
         <button type="submit" className="btn btn-primary w-100">
-          Login
+          Acceso
         </button>
         <p className="my-2">
-          You dont't have an account?
+          ¿No tienes una cuenta?
           <Link href="/register">
             <a className="mx-1" style={{ color: "blue" }}>
-              Register Now
+              Regístrate ahora
             </a>
           </Link>
         </p>

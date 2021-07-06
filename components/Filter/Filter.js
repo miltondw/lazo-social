@@ -5,12 +5,12 @@ import { getData } from "../../utils/fetchData";
 export default function Filter({ state }) {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
-  const [category, setCategory] = useState("");
+  const [club, setCategory] = useState("");
 
-  const { categories } = state;
+  const { clubs } = state;
   const handleCategory = (e) => {
     setCategory(e.target.value);
-    filterSearch({ router, category: e.target.value });
+    filterSearch({ router, club: e.target.value });
   };
   const handleSort = (e) => {
     setSort(e.target.value);
@@ -25,12 +25,12 @@ export default function Filter({ state }) {
       <div className="input-group-prepend col-md-2 px-0 mt-2">
         <select
           className="form-select text-capitalize"
-          value={category}
+          value={club}
           onChange={handleCategory}
         >
           <option value="all">Todos los Clubs</option>
 
-          {categories.map((item) => (
+          {clubs.map((item) => (
             <option key={item._id} value={item.name}>
               {item.name}
             </option>

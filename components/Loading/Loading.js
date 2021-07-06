@@ -18,7 +18,7 @@ export default function Loading() {
           points="20,1 40,40 1,40"
         ></polygon>
         <text fill="#fff" x="5" y="47">
-          Loading
+          Cargando
         </text>
       </svg>
     </div>

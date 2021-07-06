@@ -49,7 +49,7 @@ export default function Register() {
   return (
     <div>
       <Head>
-        <title>Register page</title>
+        <title>Página de registro</title>
       </Head>
       <form
         className="mx-auto my-4"
@@ -58,7 +58,7 @@ export default function Register() {
       >
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Name
+            Nombre
           </label>
           <input
             type="text"
@@ -71,7 +71,7 @@ export default function Register() {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address
+            Dirección de correo
           </label>
           <input
             type="email"
@@ -85,7 +85,7 @@ export default function Register() {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+            Contraseña
           </label>
           <input
             type="password"
@@ -98,7 +98,7 @@ export default function Register() {
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword2" className="form-label">
-            Confirm Password
+            Confirmar Contraseña
           </label>
           <input
             type="password"
@@ -110,13 +110,13 @@ export default function Register() {
           />
         </div>
         <button type="submit" className="btn btn-primary w-100">
-          Register
+          Registrarse
         </button>
         <p className="my-2">
-          Already have a account?
+          ¿Ya tienes una cuenta?
           <Link href="/signin">
             <a className="mx-1" style={{ color: "blue" }}>
-              Login Now
+              Inicia sesión ahora
             </a>
           </Link>
         </p>

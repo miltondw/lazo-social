@@ -17,7 +17,7 @@ export default function Modal() {
     });
   };
   const deleteCategories = (item) => {
-    deleteData(`categories/${item.id}`, auth.token).then((res) => {
+    deleteData(`clubs/${item.id}`, auth.token).then((res) => {
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
       dispatch(deleteItem(item.data, item.id, item.type));
@@ -40,7 +40,7 @@ export default function Modal() {
           dispatch(deleteItem(item.data, item.id, item.type));
         }
         if (item.type === "ADD_USERS") deleteUser(item);
-        if (item.type === "ADD_CATEGORIES") deleteCategories(item);
+        if (item.type === "ADD_CLUBS") deleteCategories(item);
         if (item.type === "DELETE_PRODUCT") deleteProduct(item);
         dispatch({ type: "ADD_MODAL", payload: [] });
       }
@@ -67,7 +67,7 @@ export default function Modal() {
               aria-label="Close"
             ></button>
           </div>
-          <div className="modal-body">Do you want to delete this item?</div>
+          <div className="modal-body">¿Quieres eliminar esto?</div>
           <div className="modal-footer">
             <button
               type="button"
@@ -75,14 +75,14 @@ export default function Modal() {
               data-bs-dismiss="modal"
               onClick={handleSubmit}
             >
-              Yes
+              Sí
             </button>
             <button
               type="button"
               className="btn btn-primary"
               data-bs-dismiss="modal"
             >
-              Closed
+              Cerrar
             </button>
           </div>
         </div>

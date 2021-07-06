@@ -5,7 +5,7 @@ export const ACTIONS = {
   ADD_MODAL: "ADD_MODAL",
   ADD_ORDERS: "ADD_ORDERS",
   ADD_USERS: "ADD_USERS",
-  ADD_CATEGORIES: "ADD_CATEGORIES",
+  ADD_CLUBS: "ADD_CLUBS",
 };
 export const addToCart = (product, cart) => {
   if (product.inStock === 0)

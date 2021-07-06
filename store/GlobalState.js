@@ -11,7 +11,7 @@ export const DataProvider = ({ children }) => {
     modal: [],
     orders: [],
     users: [],
-    categories: [],
+    clubs: [],
   };
   const [state, dispatch] = useReducer(reducers, initialState);
   const { cart, auth } = state;
@@ -30,12 +30,12 @@ export const DataProvider = ({ children }) => {
         });
       });
     }
-    getData("categories").then((res) => {
+    getData("clubs").then((res) => {
       if (res.err)
         return dispatch({ type: "NOTYFY", payload: { error: res.err } });
       dispatch({
-        type: "ADD_CATEGORIES",
-        payload: res.categories,
+        type: "ADD_CLUBS",
+        payload: res.clubs,
       });
     });
   }, []);

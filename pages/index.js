@@ -1,7 +1,7 @@
 import { getData } from "../utils/fetchData";
 import filterSearch from "../utils/filterSearch";
 import { DataContext } from "../store/GlobalState";
-import ProductItem from "../components/Product/ProductItem";
+import AlumnoItem from "../components/AlumnoItem/AlumnoItem";
 import Filter from "../components/Filter/Filter";
 import { useState, useContext, useEffect } from "react";
 import Head from "next/head";
@@ -37,7 +37,7 @@ export default function Home(props) {
         deleteArr.push({
           data: "",
           id: p._id,
-          title: "Delete all selected products?",
+          title: "¿Eliminar todos los productos seleccionados? ",
           type: "DELETE_PRODUCT",
         });
       }
@@ -52,7 +52,7 @@ export default function Home(props) {
   return (
     <div className="home_page">
       <Head>
-        <title>Home Page</title>
+        <title>Lazo Social</title>
       </Head>
       <Filter state={state} />
       {auth.user &&
@@ -79,7 +79,7 @@ export default function Home(props) {
               data-bs-target="#exampleModal"
               onClick={handleDeleteAll}
             >
-              DELETE ALL
+              ELIMINAR TODOS
             </button>
           </div>
         ) : (
@@ -87,10 +87,10 @@ export default function Home(props) {
         ))}
       <div className="products">
         {products.length === 0 ? (
-          <h2>No products</h2>
+          <h2>No Hay Alumnos</h2>
         ) : (
           products.map((p) => (
-            <ProductItem key={p._id} product={p} handleCheck={handleCheck} />
+            <AlumnoItem key={p._id} product={p} handleCheck={handleCheck} />
           ))
         )}
       </div>
@@ -101,7 +101,7 @@ export default function Home(props) {
           className="btn btn-outline-info d-block mx-auto mb-4"
           onClick={handleLoadmore}
         >
-          Load more
+          Carga más
         </button>
       )}
     </div>
@@ -109,14 +109,12 @@ export default function Home(props) {
 }
 export async function getServerSideProps({ query }) {
   const page = query.page || 1;
-  const category = query.category || "all";
+  const clubs = query.clubs || "all";
   const sort = query.sort || "";
   const search = query.search || "all";
 
   const res = await getData(
-    `product?limit=${
-      page * 6
-    }&category=${category}&sort=${sort}&title=${search}`
+    `product?limit=${page * 6}&clubs=${clubs}&sort=${sort}&title=${search}`
   );
   // server side rendering
   return {

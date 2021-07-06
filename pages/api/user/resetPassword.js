@@ -21,7 +21,7 @@ const resetPassword = async (req, res) => {
       { _id: result.id },
       { password: passwordHash }
     );
-    res.json({ msg: "Updated Success!" });
+    res.json({ msg: "¡Actualización exitosa!" });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }

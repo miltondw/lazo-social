@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../store/GlobalState";
 import valid from "../../utils/valid";
@@ -52,21 +51,21 @@ export default function Profile() {
     if (!file)
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "File does not exist." },
+        payload: { error: "El archivo no existe." },
       });
 
     if (file.size > 1024 * 1024)
       //1mb
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "The largest image size is 1mb." },
+        payload: { error: "El tamaño de imagen maximo es de 1 MB." },
       });
 
     if (file.type !== "image/jpeg" && file.type !== "image/png")
       //1mb
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Image format is incorrect." },
+        payload: { error: "El formato de la imagen no es soportado." },
       });
 
     // let blob = new Blob([file], { type: "image/jpg" }),
@@ -101,12 +100,12 @@ export default function Profile() {
   return (
     <div className="profile_page">
       <Head>
-        <title>Profile</title>
+        <title>Perfil</title>
       </Head>
       <section className="row text-secondary my3">
         <div className="col-md-4">
           <h3 className="text-center text-uppercase">
-            {auth.user.role === "user" ? "User Profile" : "Admin Profile"}
+            {auth.user.role === "user" ? "Perfil de usuario" : "Perfil de Profesor"}
           </h3>
           <div className="avatar">
             {/* <Image
@@ -123,7 +122,7 @@ export default function Profile() {
             />
             <span>
               <i className="fas fa-camera"></i>
-              <p>Change</p>
+              <p>Cambiar</p>
               <input
                 type="file"
                 name="file"
@@ -136,12 +135,12 @@ export default function Profile() {
 
           <div className="form-group">
             <label htmlFor="name">
-              Name
+              Nombre
               <input
                 type="text"
                 name="name"
                 value={name}
-                placeholder="Your name"
+                placeholder="Tú nombre"
                 className="form-control"
                 onChange={handleChange}
               />
@@ -149,7 +148,7 @@ export default function Profile() {
           </div>
           <div className="form-group">
             <label htmlFor="email">
-              Email
+              Correo
               <input
                 type="text"
                 name="email"
@@ -161,11 +160,11 @@ export default function Profile() {
           </div>
           <div className="form-group">
             <label htmlFor="password">
-              New Password
+              Nueva contraseña
               <input
                 type="password"
                 name="password"
-                placeholder="New password"
+                placeholder="Nueva contraseña"
                 className="form-control"
                 value={password}
                 onChange={handleChange}
@@ -174,11 +173,11 @@ export default function Profile() {
           </div>
           <div className="form-group">
             <label htmlFor="cf_password">
-              Confirm New Password
+            Confirmar contraseña
               <input
                 type="password"
                 name="cf_password"
-                placeholder="Confirm password"
+                placeholder="Confirmar contraseña"
                 className="form-control"
                 value={cf_password}
                 onChange={handleChange}
@@ -190,7 +189,7 @@ export default function Profile() {
             disabled={notify.loading}
             onClick={handleUpdateProfile}
           >
-            Update
+            Actualizar
           </button>
         </div>
         <div className="col-md-8">

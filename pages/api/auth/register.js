@@ -20,7 +20,7 @@ const register = async (req, res) => {
 
     if (errMsg) return res.status(400).json({ err: errMsg });
     const user = await Users.findOne({ email });
-    if (user) return res.status(400).json({ err: "This email already exists" });
+    if (user) return res.status(400).json({ err: "Ya existe Este Correo" });
     const passwordHash = await bcrypt.hash(password, 10);
     const newUser = new Users({
       name,
@@ -29,7 +29,7 @@ const register = async (req, res) => {
       cf_password,
     });
     await newUser.save();
-    res.json({ msg: "Register Success!" });
+    res.json({ msg: "¡Registro exitoso!" });
   } catch (err) {
     return res.status(500).json({ err: err.message });
   }

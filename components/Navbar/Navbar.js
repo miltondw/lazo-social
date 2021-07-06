@@ -20,7 +20,7 @@ export default function Navbar() {
     Cookie.remove("refreshtoken", { path: "api/auth/accesToken" });
     localStorage.removeItem("firstLogin");
     dispatch({ type: "AUTH", payload: {} });
-    dispatch({ type: "NOTIFY", payload: { success: "Logged out!" } });
+    dispatch({ type: "NOTIFY", payload: { success: "¡Desconectado!" } });
     return router.push("/");
   };
   const adminRouter = () => {

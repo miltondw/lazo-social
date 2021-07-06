@@ -2,38 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
-import { addToCart } from "../../store/Actions";
 
-export default function ProductItem({ product, handleCheck }) {
+export default function AlumnoItem({ alumno, handleCheck }) {
   const { state, dispatch } = useContext(DataContext);
-  const { cart, auth } = state;
-  const btnActive = (active) => {
-    if (active) return "bt-active";
-    return "";
-  };
+  const { auth } = state;
   const userLink = () => {
     return (
       <>
-        <Link href={`/product/${product._id}`}>
-          <a className="btn btn-info">View</a>
+        <Link href={`/alumno/${alumno._id}`}>
+          <a className="btn btn-info">Ver</a>
         </Link>
-        <button
-          className={`btn btn-success ${btnActive(
-            product.inStock === 0 ? true : false
-          )}`}
-          onClick={() => dispatch(addToCart(product, cart))}
-          // disabled={product.inStock === 0 ? true : false}
-        >
-          Buy
-        </button>
       </>
     );
   };
   const adminLink = () => {
     return (
       <>
-        <Link href={`create/${product._id}`}>
-          <a className="btn btn-info">Edit</a>
+        <Link href={`crear/${alumno._id}`}>
+          <a className="btn btn-info">Editar</a>
         </Link>
         <button
           className={`btn btn-danger `}
@@ -46,15 +32,15 @@ export default function ProductItem({ product, handleCheck }) {
               payload: [
                 {
                   data: "",
-                  id: product._id,
-                  title: product.title,
+                  id: alumno._id,
+                  title: alumno.name,
                   type: "DELETE_PRODUCT",
                 },
               ],
             });
           }}
         >
-          Delete
+          Eliminar
         </button>
       </>
     );
@@ -65,7 +51,7 @@ export default function ProductItem({ product, handleCheck }) {
       {auth.user && auth.user.role === "admin" && (
         <input
           type="checkbox"
-          checked={product.checked}
+          checked={alumno.checked}
           className="position-absolute"
           style={{
             height: "20px",
@@ -73,39 +59,34 @@ export default function ProductItem({ product, handleCheck }) {
             zIndex: "10",
             cursor: "pointer",
           }}
-          onChange={() => handleCheck(product._id)}
+          onChange={() => handleCheck(alumno._id)}
         />
       )}
       <Image
-        src={product.images[0].url}
-        alt={product.title}
+        src={alumno.images[0].url}
+        alt={alumno.name}
         width={100}
         height={240}
         className="card-img-top"
       />
 
       <div className="card-body">
-        <h5 className="card-title text-capitalize" title={product.title}>
-          {product.title}
+        <h5 className="card-title text-capitalize" title={alumno.name}>
+          {alumno.name} {alumno.lastName}
         </h5>
 
         <div className="row justify-content-between mx-0">
           <h6 className="text-danger" style={{ width: "auto" }}>
-            ${product.price}
+            Edad:
           </h6>
-          {product.inStock > 0 ? (
-            <h6 className="text-danger" style={{ width: "auto" }}>
-              In Stock: {product.inStock}
-            </h6>
-          ) : (
-            <h6 className="text-danger" style={{ width: "auto" }}>
-              Out Stock
-            </h6>
-          )}
+
+          <h6 className="text-danger" style={{ width: "auto" }}>
+            IMC:
+          </h6>
         </div>
 
-        <p className="card-text" title={product.description}>
-          {product.description}
+        <p className="card-text" title={alumno.oservations}>
+          {alumno.oservations}
         </p>
 
         <div className="row justify-content-between mx-0">

@@ -16,7 +16,7 @@ const deliveredOrder = async (req, res) => {
   try {
     const result = await auth(req, res);
     if (result.role !== "admin")
-      return res.status(400).json({ err: "Authentication is not valid" });
+      return res.status(400).json({ err: "La autenticación no es válida." });
     const { id } = req.query;
     const order = await Orders.findOne({ _id: id });
 

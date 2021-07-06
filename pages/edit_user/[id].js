@@ -58,7 +58,7 @@ export default function EditUser() {
   return (
     <div className="edit_user my-3">
       <Head>
-        <title>Edit User</title>
+        <title>Editar usuario</title>
       </Head>
 
       <div>
@@ -68,18 +68,18 @@ export default function EditUser() {
       </div>
 
       <div className="col-md-4 mx-auto my-4">
-        <h2 className="text-uppercase text-secondary">Edit User</h2>
+        <h2 className="text-uppercase text-secondary">Editar usuario</h2>
 
         <div className="form-group my-2">
           <label htmlFor="name" className="d-block">
-            Name
+            Nombre
           </label>
           <input type="text" id="name" defaultValue={editUser.name} disabled />
         </div>
 
         <div className="form-group my-2">
           <label htmlFor="email" className="d-block">
-            Email
+            Correo
           </label>
           <input
             type="text"
@@ -102,12 +102,12 @@ export default function EditUser() {
             htmlFor="isAdmin"
             style={{ transform: "translate(4px, -3px)" }}
           >
-            isAdmin
+            Es profesor
           </label>
         </div>
 
         <button className="btn btn-dark" onClick={handleSubmit}>
-          Update
+          Actualizar
         </button>
       </div>
     </div>
