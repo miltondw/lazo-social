@@ -75,14 +75,18 @@ export default function AlumnoItem({ alumno, handleCheck }) {
       />
 
       <div className="card-body">
-        <h5 className="card-title text-capitalize" title={alumno.nombre}>
-          {alumno.nombre} {alumno.lastName}
-        </h5>
+        <div className="row justify-content-between mx-0">
+          <h6 style={{ width: "auto", textTransform: "capitalize",textAlign:'center' }}>
+            {alumno.nombre} {alumno.lastName}
+          </h6>
+
+          <h6 style={{ width: "auto", textTransform: "capitalize" }}>
+            Club:{alumno.club}
+          </h6>
+        </div>
 
         <div className="row justify-content-between mx-0">
-          <h6  style={{ width: "auto" }}>
-            Edad:{alumno.age}
-          </h6>
+          <h6 style={{ width: "auto" }}>Edad:{alumno.age}</h6>
 
           <h6 style={{ width: "auto" }}>
             IMC:{" "}
