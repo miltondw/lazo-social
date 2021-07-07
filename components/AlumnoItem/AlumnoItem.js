@@ -6,6 +6,7 @@ import { DataContext } from "../../store/GlobalState";
 export default function AlumnoItem({ alumno, handleCheck }) {
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
+ 
   const userLink = () => {
     return (
       <>
@@ -15,6 +16,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
       </>
     );
   };
+
   const adminLink = () => {
     return (
       <>
@@ -77,7 +79,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
 
         <div className="row justify-content-between mx-0">
           <h6 className="text-danger" style={{ width: "auto" }}>
-            Edad:
+            Edad:{alumno.age}
           </h6>
 
           <h6 className="text-danger" style={{ width: "auto" }}>

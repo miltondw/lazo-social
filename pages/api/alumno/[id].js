@@ -40,13 +40,14 @@ const updateAlumno = async (req, res) => {
     const { id } = req.query;
     const {
       nombre,
+      age,
       lastName,
       cc,
-      // dateOfBirth,
+      dateOfBirth,
       images,
       club,
       phone,
-      // dateOfEntry,
+      dateOfEntry,
       weight,
       size,
       sexo,
@@ -55,12 +56,13 @@ const updateAlumno = async (req, res) => {
 
     if (
       !nombre ||
+      !age ||
       !lastName ||
       !cc ||
-      // !dateOfBirth ||
+      !dateOfBirth ||
       !club ||
       !phone ||
-      // !dateOfEntry ||
+      !dateOfEntry ||
       !weight ||
       !size ||
       !sexo ||
@@ -69,25 +71,26 @@ const updateAlumno = async (req, res) => {
     )
       return res
         .status(400)
-        .json({ err: "Por favor Agregue todos los campos. create" });
-    await Alumnos.findOneAndUpdate(
+        .json({ err: "Por favor Agregue todos los campos." });
+    const a = await Alumnos.findOneAndUpdate(
       { _id: id },
       {
         nombre: nombre.toLowerCase(),
+        age,
         lastName: lastName.toLowerCase(),
         cc,
-        // dateOfBirth,
+        dateOfBirth,
         images,
         club: club.toLowerCase(),
         phone,
-        // dateOfEntry,
+        dateOfEntry,
         weight,
         size,
         sexo: sexo.toLowerCase(),
         observations,
       }
     );
-
+    
     res.json({ msg: "¡Éxito! Alumno Actualizado" });
   } catch (err) {
     return res.status(500).json({ err: err.message });

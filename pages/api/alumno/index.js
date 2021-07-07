@@ -61,7 +61,7 @@ const getAlumnos = async (req, res) => {
       .paginating();
 
     const alumnos = await features.query;
-    
+
     res.json({
       status: "success",
       result: alumnos.length,
@@ -79,24 +79,26 @@ const createAlumno = async (req, res) => {
 
     const {
       nombre,
+      age,
       lastName,
       cc,
-      // dateOfBirth,
+      dateOfBirth,
       images,
       club,
       phone,
-      // dateOfEntry,
+      dateOfEntry,
       weight,
       size,
       sexo,
       observations,
     } = req.body;
-    
+
     if (
       !nombre ||
+      !age ||
       !lastName ||
       !cc ||
-      // !dateOfBirth ||
+      !dateOfBirth ||
       !club ||
       !phone ||
       // !dateOfEntry ||
@@ -112,19 +114,20 @@ const createAlumno = async (req, res) => {
 
     const newAlumno = new Alumnos({
       nombre: nombre.toLowerCase(),
+      age,
       lastName: lastName.toLowerCase(),
       cc,
-      // dateOfBirth,
+      dateOfBirth,
       images,
       club: club.toLowerCase(),
       phone,
-      // dateOfEntry,
+      dateOfEntry,
       weight,
       size,
-      sexo:sexo.toLowerCase(),
+      sexo: sexo.toLowerCase(),
       observations,
     });
-   
+    
     await newAlumno.save();
 
     res.json({ msg: "!Éxito! Creó un nuevo Alumno" });

@@ -112,7 +112,7 @@ export async function getServerSideProps({ query }) {
   const club = query.club || "all";
   const sort = query.sort || "";
   const search = query.search || "all";
-  console.log(query)
+  
 
   const res = await getData(
     `alumno?limit=${page * 6}&club=${club}&sort=${sort}&title=${search}`

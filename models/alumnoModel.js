@@ -7,6 +7,9 @@ const alumnoSchema = new Schema(
       required: true,
       trim: true,
     },
+    age: {
+      type: Number,
+    },
     lastName: {
       type: String,
       required: true,

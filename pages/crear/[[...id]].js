@@ -4,16 +4,17 @@ import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../store/GlobalState";
 import ImageUpload from "../../utils/ImageUpload";
 import { postData, getData, putData } from "../../utils/fetchData";
-
+import getAge from "../../utils/getAge";
 export default function ProductsManager() {
   const initialState = {
     nombre: "",
     lastName: "",
     cc: 0,
-    // dateOfBirth,
+    dateOfBirth: "",
+    age:0,
     club: "",
     phone: 0,
-    // dateOfEntry,
+    dateOfEntry: "",
     weight: 0,
     size: 0,
     sexo: "",
@@ -22,6 +23,7 @@ export default function ProductsManager() {
   const [alumno, setAlumno] = useState(initialState);
   const {
     nombre,
+    age,
     lastName,
     cc,
     club,
@@ -30,6 +32,8 @@ export default function ProductsManager() {
     size,
     observations,
     sexo,
+    dateOfBirth,
+    dateOfEntry,
   } = alumno;
   const [images, setImages] = useState([]);
   const { state, dispatch } = useContext(DataContext);
@@ -50,6 +54,9 @@ export default function ProductsManager() {
       setImages([]);
     }
   }, [id]);
+  useEffect(() => {
+    setAlumno({ ...alumno, age: getAge(dateOfBirth) });
+  }, [dateOfBirth]);
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setAlumno({ ...alumno, [name]: value });
@@ -102,6 +109,7 @@ export default function ProductsManager() {
 
     if (
       !nombre ||
+      !age ||
       !lastName ||
       !cc ||
       !club ||
@@ -174,6 +182,7 @@ export default function ProductsManager() {
               />
             </div>
           </div>
+
           <div className="row">
             <div className="col-md-6">
               <label htmlFor="price">C.I</label>
@@ -199,6 +208,33 @@ export default function ProductsManager() {
               />
             </div>
           </div>
+
+          <div className="row">
+            <div className="col-md-6">
+              <label htmlFor="price">Fecha de nacimiento</label>
+              <input
+                type="date"
+                className="d-block my-4 w-100 p-2"
+                name="dateOfBirth"
+                value={dateOfBirth}
+                placeholder="Fecha de nacimento"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="inStock">Fecha de Entrada</label>
+
+              <input
+                type="date"
+                className="d-block my-4 w-100 p-2"
+                name="dateOfEntry"
+                value={dateOfEntry}
+                placeholder="Fecha de Entrada"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
           <div className="row">
             <div className="col-md-6">
               <label htmlFor="price">Peso</label>
