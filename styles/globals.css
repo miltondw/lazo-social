@@ -20,6 +20,10 @@ a {
   border-radius: 50%;
 }
 
+.text-normal{
+  color: #194388;
+}
+
 .logo {
 
   cursor: pointer;

@@ -6,7 +6,7 @@ import { DataContext } from "../../store/GlobalState";
 export default function AlumnoItem({ alumno, handleCheck }) {
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
- 
+
   const userLink = () => {
     return (
       <>
@@ -17,6 +17,8 @@ export default function AlumnoItem({ alumno, handleCheck }) {
     );
   };
 
+  const imc = alumno.weight / Math.pow(alumno.size / 100, 2);
+  const IMC = imc.toFixed(2);
   const adminLink = () => {
     return (
       <>
@@ -78,12 +80,19 @@ export default function AlumnoItem({ alumno, handleCheck }) {
         </h5>
 
         <div className="row justify-content-between mx-0">
-          <h6 className="text-danger" style={{ width: "auto" }}>
+          <h6  style={{ width: "auto" }}>
             Edad:{alumno.age}
           </h6>
 
-          <h6 className="text-danger" style={{ width: "auto" }}>
-            IMC:
+          <h6 style={{ width: "auto" }}>
+            IMC:{" "}
+            <span
+              className={
+                IMC > 18.5 && IMC < 24.9 ? "text-normal" : "text-danger"
+              }
+            >
+              {IMC}
+            </span>
           </h6>
         </div>
 
