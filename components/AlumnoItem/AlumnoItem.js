@@ -17,8 +17,8 @@ export default function AlumnoItem({ alumno, handleCheck }) {
     );
   };
 
-  const imc = alumno.weight / Math.pow(alumno.size / 100, 2);
-  const IMC = imc.toFixed(2);
+  const IMC = (alumno.weight / Math.pow(alumno.size / 100, 2)).toFixed(2)
+
   const adminLink = () => {
     return (
       <>

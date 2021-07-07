@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useState, useRef, useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
 import { getData } from "../../utils/fetchData";
-import { addToCart } from "../../store/Actions";
 import Image from "next/image";
 
 export default function DetailProduct(props) {
@@ -10,7 +9,7 @@ export default function DetailProduct(props) {
   const [tab, setTab] = useState(0);
 
   const { state, dispatch } = useContext(DataContext);
-  const { cart } = state;
+  const IMC = (alumno.weight / Math.pow(alumno.size / 100, 2)).toFixed(2);
 
   const imgRef = useRef();
 
@@ -22,7 +21,7 @@ export default function DetailProduct(props) {
   return (
     <div className="row detail_page product_detail">
       <Head>
-        <title>Detail Product</title>
+        <title>Detalle del Alumno</title>
       </Head>
       <div className="col-md-6">
         <Image
@@ -49,28 +48,78 @@ export default function DetailProduct(props) {
       </div>
 
       <div className="col-md-6 mt-3">
-        <h2 className="text-uppercase">{alumno.title}</h2>
-        <h5 className="text-danger">${alumno.price}</h5>
+        <h2 className="text-uppercase">
+          {alumno.nombre} {alumno.lastName}
+        </h2>
+        <div className="col-md-8">
+          <div className="my-3 table-responsive">
+            <table
+              className="table-bordered table-hover  text-capitalize table"
+              style={{ minWidth: "600px", cursor: "pointer" }}
+            >
+              <thead className="bg-light font-weight-bold">
+                <tr>
+                  <td className="p-1 text-center">Club</td>
+                  <td className="p-1 text-center">C.I</td>
+                  <td className="p-1 text-center">Teléfono</td>
+                  <td className="p-1 text-center">Peso</td>
+                  <td className="p-1 text-center">Estatura</td>
+                  <td className="p-1 text-center">Observaciones</td>
+                  <td className="p-1 text-center">Edad</td>
+                  <td className="p-1 text-center">Fecha de nacimiento</td>
+                  <td className="p-1 text-center">Fecha de entrada</td>
+                </tr>
+              </thead>
 
-        <div className="row mx-0 d-flex justify-content-between">
-          {alumno.inStock > 0 ? (
-            <h6 className="text-danger">In Stock: {alumno.inStock}</h6>
-          ) : (
-            <h6 className="text-danger">Out Stock</h6>
-          )}
-
-          <h6 className="text-danger">Sold: {alumno.sold}</h6>
+              <tbody>
+                <tr>
+                  <td className="p-1 text-center">{alumno.club}</td>
+                  <td className="p-1 text-center">{alumno.cc}</td>
+                  <td className="p-1 text-center">{alumno.phone}</td>
+                  <td className="p-1 text-center">{alumno.weight}Kg</td>
+                  <td className="p-1 text-center">{alumno.size/100}Mts</td>
+                  <td className="p-1 text-center">{alumno.observations}</td>
+                  <td className="p-1 text-center">{alumno.age}Años</td>
+                  <td className="p-1 text-center">
+                    {new Date(alumno.dateOfBirth).toLocaleDateString()}
+                  </td>
+                  <td className="p-1 text-center">
+                    {new Date(alumno.dateOfEntry).toLocaleDateString()}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="my-2">{alumno.description}</div>
-        <div className="my-2">{alumno.content}</div>
-        <button
-          type="button"
-          className="btn btn-dark d-block my-3 px-5"
-          onClick={() => dispatch(addToCart(alumno, cart))}
-        >
-          Buy
-        </button>
+        {/* <div className="row mx-0 d-flex justify-content-between">
+          <h6 style={{ width: "auto", textTransform: "capitalize" }}>
+            Club: {alumno.club}
+          </h6>
+
+          <h6 style={{ width: "auto" }}>Edad: {alumno.age}</h6>
+
+          <h6 style={{ width: "auto" }}>
+            IMC:{" "}
+            <span
+              className={
+                IMC > 18.5 && IMC < 24.9 ? "text-normal" : "text-danger"
+              }
+            >
+              {IMC}
+            </span>
+          </h6>
+        </div>
+        <div className="row mx-0 d-flex justify-content-between">
+          <h6 style={{ width: "auto", textTransform: "capitalize" }}>
+            <i class="fas fa-phone-alt"></i>teléfono: {alumno.phone}
+          </h6>
+          <h6 style={{ width: "auto" }}>C.I: {alumno.cc}</h6>
+          <h6 style={{ width: "auto" }}>Peso: {alumno.weight}Kg</h6>
+          <h6 style={{ width: "auto" }}>Estatura: {alumno.size / 100}Mts</h6>
+        </div>
+
+        <div className="my-2">{alumno.observations}</div> */}
       </div>
     </div>
   );
