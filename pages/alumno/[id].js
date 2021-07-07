@@ -6,7 +6,7 @@ import { addToCart } from "../../store/Actions";
 import Image from "next/image";
 
 export default function DetailProduct(props) {
-  const [product] = useState(props.product);
+  const [alumno] = useState(props.alumno);
   const [tab, setTab] = useState(0);
 
   const { state, dispatch } = useContext(DataContext);
@@ -26,14 +26,14 @@ export default function DetailProduct(props) {
       </Head>
       <div className="col-md-6">
         <Image
-          src={product.images[tab].url}
-          alt={product.title}
+          src={alumno.images[tab].url}
+          alt={alumno.title}
           width={400}
           height={350}
           className="card-img-top"
         />
         <div className="row mx-0" ref={imgRef}>
-          {product.images.map((i, index) => (
+          {alumno.images.map((i, index) => (
             <Image
               key={index}
               src={i.url}
@@ -49,25 +49,25 @@ export default function DetailProduct(props) {
       </div>
 
       <div className="col-md-6 mt-3">
-        <h2 className="text-uppercase">{product.title}</h2>
-        <h5 className="text-danger">${product.price}</h5>
+        <h2 className="text-uppercase">{alumno.title}</h2>
+        <h5 className="text-danger">${alumno.price}</h5>
 
         <div className="row mx-0 d-flex justify-content-between">
-          {product.inStock > 0 ? (
-            <h6 className="text-danger">In Stock: {product.inStock}</h6>
+          {alumno.inStock > 0 ? (
+            <h6 className="text-danger">In Stock: {alumno.inStock}</h6>
           ) : (
             <h6 className="text-danger">Out Stock</h6>
           )}
 
-          <h6 className="text-danger">Sold: {product.sold}</h6>
+          <h6 className="text-danger">Sold: {alumno.sold}</h6>
         </div>
 
-        <div className="my-2">{product.description}</div>
-        <div className="my-2">{product.content}</div>
+        <div className="my-2">{alumno.description}</div>
+        <div className="my-2">{alumno.content}</div>
         <button
           type="button"
           className="btn btn-dark d-block my-3 px-5"
-          onClick={() => dispatch(addToCart(product, cart))}
+          onClick={() => dispatch(addToCart(alumno, cart))}
         >
           Buy
         </button>
@@ -77,8 +77,8 @@ export default function DetailProduct(props) {
 }
 
 export async function getServerSideProps({ params: { id } }) {
-  const res = await getData(`product/${id}`);
+  const res = await getData(`alumno/${id}`);
   return {
-    props: { product: res.product },
+    props: { alumno: res.alumno },
   };
 }

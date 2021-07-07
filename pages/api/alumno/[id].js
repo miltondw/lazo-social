@@ -39,51 +39,55 @@ const updateAlumno = async (req, res) => {
       return res.status(400).json({ err: "La autenticación no es válida." });
     const { id } = req.query;
     const {
-      name,
+      nombre,
       lastName,
       cc,
       // dateOfBirth,
       images,
-      clubs,
+      club,
       phone,
       // dateOfEntry,
       weight,
       size,
-      oservations,
+      sexo,
+      observations,
     } = req.body;
+
     if (
-      !name ||
+      !nombre ||
       !lastName ||
       !cc ||
       // !dateOfBirth ||
-      !clubs ||
+      !club ||
       !phone ||
       // !dateOfEntry ||
       !weight ||
       !size ||
-      !oservations ||
+      !sexo ||
+      !observations ||
       images.length === 0
     )
       return res
         .status(400)
-        .json({ err: "Por favor Agregue todos los campos." });
+        .json({ err: "Por favor Agregue todos los campos. create" });
     await Alumnos.findOneAndUpdate(
       { _id: id },
       {
-        name: name.toLowerCase(),
+        nombre: nombre.toLowerCase(),
         lastName: lastName.toLowerCase(),
         cc,
         // dateOfBirth,
         images,
-        clubs: clubs.toLowerCase(),
+        club: club.toLowerCase(),
         phone,
         // dateOfEntry,
         weight,
         size,
-        oservations,
-        checked,
+        sexo: sexo.toLowerCase(),
+        observations,
       }
     );
+
     res.json({ msg: "¡Éxito! Alumno Actualizado" });
   } catch (err) {
     return res.status(500).json({ err: err.message });

@@ -31,8 +31,8 @@ export default function Cart() {
       let newArr = [];
       const updateCar = async () => {
         for (const item of cartLocal) {
-          const res = await getData(`product/${item._id}`);
-          const { _id, title, images, price, inStock, sold } = res.product;
+          const res = await getData(`alumno/${item._id}`);
+          const { _id, title, images, price, inStock, sold } = res.alumno;
           if (inStock > 0) {
             newArr.push({
               _id,
@@ -61,8 +61,8 @@ export default function Cart() {
     let newCart = [];
 
     for (const item of cart) {
-      const res = await getData(`product/${item._id}`);
-      if (res.product.inStock - item.quantity >= 0) {
+      const res = await getData(`alumno/${item._id}`);
+      if (res.alumno.inStock - item.quantity >= 0) {
         newCart.push(item);
       }
     }
@@ -103,7 +103,7 @@ export default function Cart() {
     );
   };
 
-  if (cart.length === 0) return <h2>No products</h2>;
+  if (cart.length === 0) return <h2>No existen Alumnos</h2>;
 
   return (
     <div className="row mx-auto">

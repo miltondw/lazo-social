@@ -33,7 +33,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
                 {
                   data: "",
                   id: alumno._id,
-                  title: alumno.name,
+                  title: alumno.nombre,
                   type: "DELETE_PRODUCT",
                 },
               ],
@@ -64,15 +64,15 @@ export default function AlumnoItem({ alumno, handleCheck }) {
       )}
       <Image
         src={alumno.images[0].url}
-        alt={alumno.name}
+        alt={alumno.nombre}
         width={100}
         height={240}
         className="card-img-top"
       />
 
       <div className="card-body">
-        <h5 className="card-title text-capitalize" title={alumno.name}>
-          {alumno.name} {alumno.lastName}
+        <h5 className="card-title text-capitalize" title={alumno.nombre}>
+          {alumno.nombre} {alumno.lastName}
         </h5>
 
         <div className="row justify-content-between mx-0">

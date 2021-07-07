@@ -1,8 +1,8 @@
-const filterSearch = ({ router, page, clubs, sort, search }) => {
+const filterSearch = ({ router, page, club, sort, search }) => {
   const path = router.pathname;
   const query = router.query;
 
-  if (clubs) query.clubs = clubs;
+  if (club) query.club = club;
   if (page) query.page = page;
   if (search) query.search = search;
   if (sort) query.sort = sort;

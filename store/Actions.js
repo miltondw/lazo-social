@@ -7,8 +7,8 @@ export const ACTIONS = {
   ADD_USERS: "ADD_USERS",
   ADD_CLUBS: "ADD_CLUBS",
 };
-export const addToCart = (product, cart) => {
-  if (product.inStock === 0)
+export const addToCart = (alumno, cart) => {
+  if (alumno.inStock === 0)
     return {
       type: "NOTIFY",
       payload: {
@@ -16,7 +16,7 @@ export const addToCart = (product, cart) => {
       },
     };
   const check = cart.every((item) => {
-    return item._id !== product._id;
+    return item._id !== alumno._id;
   });
   if (!check)
     return {
@@ -30,7 +30,7 @@ export const addToCart = (product, cart) => {
     payload: [
       ...cart,
       {
-        ...product,
+        ...alumno,
         quantity: 1,
       },
     ],

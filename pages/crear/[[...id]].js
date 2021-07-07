@@ -16,11 +16,21 @@ export default function ProductsManager() {
     // dateOfEntry,
     weight: 0,
     size: 0,
+    sexo: "",
     observations: "",
   };
   const [alumno, setAlumno] = useState(initialState);
-  const { nombre, lastName, cc, club, phone, weight, size, observations } =
-    alumno;
+  const {
+    nombre,
+    lastName,
+    cc,
+    club,
+    phone,
+    weight,
+    size,
+    observations,
+    sexo,
+  } = alumno;
   const [images, setImages] = useState([]);
   const { state, dispatch } = useContext(DataContext);
   const { clubs, auth } = state;
@@ -98,12 +108,13 @@ export default function ProductsManager() {
       !phone ||
       !weight ||
       !size ||
+      !sexo ||
       !observations ||
       images.length === 0
     )
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Agregue todos los campos." },
+        payload: { error: "Agregue todos los campos. form" },
       });
 
     dispatch({ type: "NOTIFY", payload: { loading: true } });
@@ -142,26 +153,26 @@ export default function ProductsManager() {
       <form className="row" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <div className="row">
-          <div className="col-md-6">
-          <input
-            type="text"
-            className="d-block my-4 w-100 p-2"
-            name="nombre"
-            value={nombre}
-            placeholder="Nombre"
-            onChange={handleChangeInput}
-          />
-          </div>
-          <div className="col-md-6">
-          <input
-            type="text"
-            className="d-block my-4 w-100 p-2"
-            name="lastName"
-            value={lastName}
-            placeholder="Apellido"
-            onChange={handleChangeInput}
-          />
-          </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="nombre"
+                value={nombre}
+                placeholder="Nombre"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="lastName"
+                value={lastName}
+                placeholder="Apellido"
+                onChange={handleChangeInput}
+              />
+            </div>
           </div>
           <div className="row">
             <div className="col-md-6">
@@ -213,6 +224,40 @@ export default function ProductsManager() {
               />
             </div>
           </div>
+          <h4>Sexo</h4>
+          <div className="row">
+            <div className="col-md-6">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sexo"
+                  id="inlineRadio1"
+                  value="m"
+                  onChange={handleChangeInput}
+                />
+                <label class="form-check-label" for="inlineRadio1">
+                  Masculino
+                </label>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sexo"
+                  id="inlineRadio2"
+                  value="f"
+                  onChange={handleChangeInput}
+                />
+                <label class="form-check-label" for="inlineRadio2">
+                  Femenino
+                </label>
+              </div>
+            </div>
+          </div>
+
           <textarea
             name="observations"
             id="observations"

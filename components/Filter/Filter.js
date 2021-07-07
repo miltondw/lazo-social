@@ -5,11 +5,11 @@ import { getData } from "../../utils/fetchData";
 export default function Filter({ state }) {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
-  const [club, setCategory] = useState("");
+  const [club, setClub] = useState("");
 
   const { clubs } = state;
-  const handleCategory = (e) => {
-    setCategory(e.target.value);
+  const handleClub = (e) => {
+    setClub(e.target.value);
     filterSearch({ router, club: e.target.value });
   };
   const handleSort = (e) => {
@@ -26,7 +26,7 @@ export default function Filter({ state }) {
         <select
           className="form-select text-capitalize"
           value={club}
-          onChange={handleCategory}
+          onChange={handleClub}
         >
           <option value="all">Todos los Clubs</option>
 

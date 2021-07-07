@@ -24,7 +24,7 @@ class APIfeatures {
     const excludeFields = ["page", "sort", "limit"];
     excludeFields.forEach((el) => delete queryObj[el]);
 
-    if (queryObj.clubs !== "all") this.query.find({ clubs: queryObj.clubs });
+    if (queryObj.club !== "all") this.query.find({ club: queryObj.club });
     if (queryObj.title !== "all")
       this.query.find({ title: { $regex: queryObj.title } });
 
@@ -60,12 +60,12 @@ const getAlumnos = async (req, res) => {
       .sorting()
       .paginating();
 
-    const products = await features.query;
-
+    const alumnos = await features.query;
+    
     res.json({
       status: "success",
-      result: products.length,
-      products,
+      result: alumnos.length,
+      alumnos,
     });
   } catch (err) {
     return res.status(500).json({ err: err.message });
@@ -78,50 +78,53 @@ const createAlumno = async (req, res) => {
       return res.status(400).json({ err: "La autenticación no es válida.." });
 
     const {
-      name,
+      nombre,
       lastName,
       cc,
       // dateOfBirth,
       images,
-      clubs,
+      club,
       phone,
       // dateOfEntry,
       weight,
       size,
-      oservations,
+      sexo,
+      observations,
     } = req.body;
-
+    
     if (
-      !name ||
+      !nombre ||
       !lastName ||
       !cc ||
       // !dateOfBirth ||
-      !clubs ||
+      !club ||
       !phone ||
       // !dateOfEntry ||
       !weight ||
       !size ||
-      !oservations ||
+      !sexo ||
+      !observations ||
       images.length === 0
     )
       return res
         .status(400)
-        .json({ err: "Por favor Agregue todos los campos." });
+        .json({ err: "Por favor Agregue todos los campos" });
 
     const newAlumno = new Alumnos({
-      name: name.toLowerCase(),
+      nombre: nombre.toLowerCase(),
       lastName: lastName.toLowerCase(),
       cc,
       // dateOfBirth,
       images,
-      clubs: clubs.toLowerCase(),
+      club: club.toLowerCase(),
       phone,
       // dateOfEntry,
       weight,
       size,
-      oservations,
+      sexo:sexo.toLowerCase(),
+      observations,
     });
-
+   
     await newAlumno.save();
 
     res.json({ msg: "!Éxito! Creó un nuevo Alumno" });

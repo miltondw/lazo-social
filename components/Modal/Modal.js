@@ -16,7 +16,7 @@ export default function Modal() {
       return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
     });
   };
-  const deleteCategories = (item) => {
+  const deleteClubs = (item) => {
     deleteData(`clubs/${item.id}`, auth.token).then((res) => {
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
@@ -26,7 +26,7 @@ export default function Modal() {
   };
   const deleteProduct = (item) => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
-    deleteData(`product/${item.id}`, auth.token).then((res) => {
+    deleteData(`alumno/${item.id}`, auth.token).then((res) => {
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
       dispatch({ type: "NOTIFY", payload: { success: res.msg } });
@@ -40,7 +40,7 @@ export default function Modal() {
           dispatch(deleteItem(item.data, item.id, item.type));
         }
         if (item.type === "ADD_USERS") deleteUser(item);
-        if (item.type === "ADD_CLUBS") deleteCategories(item);
+        if (item.type === "ADD_CLUBS") deleteClubs(item);
         if (item.type === "DELETE_PRODUCT") deleteProduct(item);
         dispatch({ type: "ADD_MODAL", payload: [] });
       }

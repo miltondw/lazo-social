@@ -2,13 +2,13 @@ import { model, Schema, models } from "mongoose";
 
 const alumnoSchema = new Schema(
   {
-    name: {
+    nombre: {
       type: String,
       required: true,
       trim: true,
     },
     lastName: {
-      type: Number,
+      type: String,
       required: true,
       trim: true,
     },
@@ -23,7 +23,7 @@ const alumnoSchema = new Schema(
       type: Array,
       required: true,
     },
-    clubs: {
+    club: {
       type: String,
       default: "all",
     },
@@ -42,7 +42,10 @@ const alumnoSchema = new Schema(
       type: Number,
       required: true,
     },
-    oservations: {
+    sexo: {
+      type: String,
+    },
+    observations: {
       type: String,
       trim: true,
     },

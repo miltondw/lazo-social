@@ -7,14 +7,14 @@ connectDB();
 export default async (req, res) => {
   switch (req.method) {
     case "POST":
-      await createCategory(req, res);
+      await createClub(req, res);
       break;
     case "GET":
       await getClubs(req, res);
       break;
   }
 };
-const createCategory = async (req, res) => {
+const createClub = async (req, res) => {
   try {
     const result = await auth(req, res);
     if (result.role !== "admin")
@@ -22,11 +22,11 @@ const createCategory = async (req, res) => {
     const { name } = req.body;
     if (!name)
       return res.status(400).json({ err: "El nombre no puede dejarse en blanco." });
-    const newCategory = new Clubs({ name: name.toLowerCase() });
-    await newCategory.save();
+    const newClub = new Clubs({ name: name.toLowerCase() });
+    await newClub.save();
     res.json({
       msg: "¡Éxito! Creó un nuevo Club.",
-      newCategory,
+      newClub,
     });
   } catch (err) {
     return res.status(500).json({ err: err.message });

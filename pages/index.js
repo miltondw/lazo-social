@@ -7,32 +7,32 @@ import { useState, useContext, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 export default function Home(props) {
-  const [products, setProducts] = useState(props.products);
+  const [alumnos, setProducts] = useState(props.alumnos);
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
   const [isCheck, setIsCheck] = useState(false);
   const [page, setPage] = useState(1);
   const router = useRouter();
   useEffect(() => {
-    setProducts(props.products);
-  }, [props.products]);
+    setProducts(props.alumnos);
+  }, [props.alumnos]);
   useEffect(() => {
     if (Object.keys(router.query).length === 0) setPage(1);
   }, [router.query]);
   const handleCheck = (id) => {
-    products.forEach((p) => {
+    alumnos.forEach((p) => {
       if (p._id === id) p.checked = !p.checked;
     });
-    setProducts([...products]);
+    setProducts([...alumnos]);
   };
   const handleCheckAll = () => {
-    products.forEach((p) => (p.checked = !isCheck));
-    setProducts([...products]);
+    alumnos.forEach((p) => (p.checked = !isCheck));
+    setProducts([...alumnos]);
     setIsCheck(!isCheck);
   };
   const handleDeleteAll = () => {
     let deleteArr = [];
-    products.forEach((p) => {
+    alumnos.forEach((p) => {
       if (p.checked) {
         deleteArr.push({
           data: "",
@@ -57,7 +57,7 @@ export default function Home(props) {
       <Filter state={state} />
       {auth.user &&
         auth.user.role === "admin" &&
-        (products.length !== 0 ? (
+        (alumnos.length !== 0 ? (
           <div
             className="delete_all btn btn-danger mt-2"
             style={{ marginBottom: "-10px" }}
@@ -86,11 +86,11 @@ export default function Home(props) {
           ""
         ))}
       <div className="products">
-        {products.length === 0 ? (
+        {alumnos.length === 0 ? (
           <h2>No Hay Alumnos</h2>
         ) : (
-          products.map((p) => (
-            <AlumnoItem key={p._id} product={p} handleCheck={handleCheck} />
+          alumnos.map((p) => (
+            <AlumnoItem key={p._id} alumno={p} handleCheck={handleCheck} />
           ))
         )}
       </div>
@@ -109,17 +109,18 @@ export default function Home(props) {
 }
 export async function getServerSideProps({ query }) {
   const page = query.page || 1;
-  const clubs = query.clubs || "all";
+  const club = query.club || "all";
   const sort = query.sort || "";
   const search = query.search || "all";
+  console.log(query)
 
   const res = await getData(
-    `product?limit=${page * 6}&clubs=${clubs}&sort=${sort}&title=${search}`
+    `alumno?limit=${page * 6}&club=${club}&sort=${sort}&title=${search}`
   );
   // server side rendering
   return {
     props: {
-      products: res.products,
+      alumnos: res.alumnos,
       result: res.result,
     }, // will be passed to the page component as props
   };
