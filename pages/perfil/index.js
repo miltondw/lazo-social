@@ -193,8 +193,11 @@ export default function Profile() {
           </button>
         </div>
         <div className="col-md-8">
-          <h3 className="text-uppercase">Orders</h3>
+          <h3 className="text-uppercase">
+          {auth.user.role === "user" ? "Datos" : "Alumnos"}
 
+          </h3>
+{/* 
           <div className="my-3 table-responsive">
             <table
               className="table-bordered table-hover w-100 text-uppercase"
@@ -241,6 +244,7 @@ export default function Profile() {
               </tbody>
             </table>
           </div>
+        */}
         </div>
       </section>
     </div>

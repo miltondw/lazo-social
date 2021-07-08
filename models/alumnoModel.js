@@ -48,6 +48,10 @@ const alumnoSchema = new Schema(
     sexo: {
       type: String,
     },
+    exonerado: {
+      type: Boolean,
+      default: false,
+    },
     observations: {
       type: String,
       trim: true,

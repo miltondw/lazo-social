@@ -11,13 +11,14 @@ export default function ProductsManager() {
     lastName: "",
     cc: 0,
     dateOfBirth: "",
-    age:0,
+    age: 0,
     club: "",
     phone: 0,
     dateOfEntry: "",
     weight: 0,
     size: 0,
     sexo: "",
+    exonerado: false,
     observations: "",
   };
   const [alumno, setAlumno] = useState(initialState);
@@ -31,6 +32,7 @@ export default function ProductsManager() {
     weight,
     size,
     observations,
+    exonerado,
     sexo,
     dateOfBirth,
     dateOfEntry,
@@ -38,6 +40,7 @@ export default function ProductsManager() {
   const [images, setImages] = useState([]);
   const { state, dispatch } = useContext(DataContext);
   const { clubs, auth } = state;
+
   const router = useRouter();
   const { id } = router.query;
   const [onEdit, setOnEdit] = useState(false);
@@ -99,6 +102,9 @@ export default function ProductsManager() {
     newArr.splice(index, 1);
     setImages(newArr);
   };
+  const handleCheck = (check) => {
+    setAlumno({ ...alumno, exonerado: check });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (auth.user.role !== "admin")
@@ -153,6 +159,10 @@ export default function ProductsManager() {
 
     return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
   };
+  if (auth.user) {
+    if (!auth.user.root) return null;
+  }
+  if (!auth.user) return null;
   return (
     <div className="alumnos_manager">
       <Head>
@@ -260,35 +270,50 @@ export default function ProductsManager() {
               />
             </div>
           </div>
-          <h4>Sexo</h4>
           <div className="row">
             <div className="col-md-6">
-              <div class="form-check form-check-inline">
+              <h4>Sexo</h4>
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="sexo"
                   id="inlineRadio1"
                   value="m"
                   onChange={handleChangeInput}
                 />
-                <label class="form-check-label" for="inlineRadio1">
+                <label className="form-check-label" htmlFor="inlineRadio1">
                   Masculino
                 </label>
               </div>
-            </div>
-            <div className="col-md-6">
-              <div class="form-check form-check-inline">
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="sexo"
                   id="inlineRadio2"
                   value="f"
                   onChange={handleChangeInput}
                 />
-                <label class="form-check-label" for="inlineRadio2">
+                <label className="form-check-label" htmlFor="inlineRadio2">
                   Femenino
+                </label>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <h4>Exonerado</h4>
+              <div className="form-check form-check-inline">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="exonerado"
+                  id="inlineRadio1"
+                  checked={exonerado}
+                  onChange={() => handleCheck(!exonerado)}
+                />
+
+                <label className="form-check-label" htmlFor="inlineRadio1">
+                  Sí
                 </label>
               </div>
             </div>

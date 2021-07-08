@@ -51,6 +51,7 @@ export default function DetailProduct(props) {
         <h2 className="text-uppercase">
           {alumno.nombre} {alumno.lastName}
         </h2>
+        {alumno.exonerado ? <h3 className="text-info">Exonerado</h3> : ""}
         <div className="col-md-8">
           <div className="my-3 table-responsive">
             <table
@@ -77,7 +78,7 @@ export default function DetailProduct(props) {
                   <td className="p-1 text-center">{alumno.cc}</td>
                   <td className="p-1 text-center">{alumno.phone}</td>
                   <td className="p-1 text-center">{alumno.weight}Kg</td>
-                  <td className="p-1 text-center">{alumno.size/100}Mts</td>
+                  <td className="p-1 text-center">{alumno.size / 100}Mts</td>
                   <td className="p-1 text-center">{alumno.observations}</td>
                   <td className="p-1 text-center">{alumno.age}Años</td>
                   <td className="p-1 text-center">
@@ -112,7 +113,7 @@ export default function DetailProduct(props) {
         </div>
         <div className="row mx-0 d-flex justify-content-between">
           <h6 style={{ width: "auto", textTransform: "capitalize" }}>
-            <i class="fas fa-phone-alt"></i>teléfono: {alumno.phone}
+            <i className="fas fa-phone-alt"></i>teléfono: {alumno.phone}
           </h6>
           <h6 style={{ width: "auto" }}>C.I: {alumno.cc}</h6>
           <h6 style={{ width: "auto" }}>Peso: {alumno.weight}Kg</h6>

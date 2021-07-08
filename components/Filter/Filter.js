@@ -56,9 +56,9 @@ export default function Filter({ state }) {
         >
           <option value="-createdAt">Nuevos</option>
           <option value="oldest">Antiguos</option>
-          <option value="-sold">Best sales</option>
+          {/* <option value="-sold">Best sales</option>
           <option value="-price">Price: Hight-Low</option>
-          <option value="price">Price: Low-Hight</option>
+          <option value="price">Price: Low-Hight</option> */}
         </select>
       </div>
     </div>

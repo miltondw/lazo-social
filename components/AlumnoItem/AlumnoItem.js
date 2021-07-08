@@ -7,17 +7,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
 
-  const userLink = () => {
-    return (
-      <>
-        <Link href={`/alumno/${alumno._id}`}>
-          <a className="btn btn-info">Ver</a>
-        </Link>
-      </>
-    );
-  };
-
-  const IMC = (alumno.weight / Math.pow(alumno.size / 100, 2)).toFixed(2)
+  const IMC = (alumno.weight / Math.pow(alumno.size / 100, 2)).toFixed(2);
 
   const adminLink = () => {
     return (
@@ -25,7 +15,11 @@ export default function AlumnoItem({ alumno, handleCheck }) {
         <Link href={`crear/${alumno._id}`}>
           <a className="btn btn-info">Editar</a>
         </Link>
+        <Link href={`/alumno/${alumno._id}`}>
+          <a className="btn btn-info">Ver</a>
+        </Link>
         <button
+          style={{ position: "relative", left: " 50%" }}
           className={`btn btn-danger `}
           aria-hidden="true"
           data-bs-toggle="modal"
@@ -76,7 +70,13 @@ export default function AlumnoItem({ alumno, handleCheck }) {
 
       <div className="card-body">
         <div className="row justify-content-between mx-0">
-          <h6 style={{ width: "auto", textTransform: "capitalize",textAlign:'center' }}>
+          <h6
+            style={{
+              width: "auto",
+              textTransform: "capitalize",
+              textAlign: "center",
+            }}
+          >
             {alumno.nombre} {alumno.lastName}
           </h6>
 
@@ -105,7 +105,8 @@ export default function AlumnoItem({ alumno, handleCheck }) {
         </p>
 
         <div className="row justify-content-between mx-0">
-          {!auth.user || auth.user.role !== "admin" ? userLink() : adminLink()}
+          {/* {!auth.user || auth.user.role !== "admin" ? userLink() : adminLink()} */}
+          {adminLink()}
         </div>
       </div>
     </div>

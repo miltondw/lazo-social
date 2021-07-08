@@ -63,7 +63,7 @@ export default function EditUser() {
 
       <div>
         <button className="btn btn-dark" onClick={() => router.back()}>
-          <i className="fas fa-long-arrow-alt-left" aria-hidden></i> Go Back
+          <i className="fas fa-long-arrow-alt-left" aria-hidden></i>Ir atras
         </button>
       </div>
 

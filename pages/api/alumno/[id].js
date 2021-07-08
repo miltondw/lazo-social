@@ -51,6 +51,7 @@ const updateAlumno = async (req, res) => {
       weight,
       size,
       sexo,
+      exonerado,
       observations,
     } = req.body;
 
@@ -86,11 +87,12 @@ const updateAlumno = async (req, res) => {
         dateOfEntry,
         weight,
         size,
+        exonerado,
         sexo: sexo.toLowerCase(),
         observations,
       }
     );
-    
+    console.log(a)
     res.json({ msg: "¡Éxito! Alumno Actualizado" });
   } catch (err) {
     return res.status(500).json({ err: err.message });

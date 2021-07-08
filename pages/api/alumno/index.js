@@ -90,6 +90,7 @@ const createAlumno = async (req, res) => {
       weight,
       size,
       sexo,
+      exonerado,
       observations,
     } = req.body;
 
@@ -101,7 +102,7 @@ const createAlumno = async (req, res) => {
       !dateOfBirth ||
       !club ||
       !phone ||
-      // !dateOfEntry ||
+      !dateOfEntry ||
       !weight ||
       !size ||
       !sexo ||
@@ -125,9 +126,10 @@ const createAlumno = async (req, res) => {
       weight,
       size,
       sexo: sexo.toLowerCase(),
+      exonerado,
       observations,
     });
-    
+
     await newAlumno.save();
 
     res.json({ msg: "!Éxito! Creó un nuevo Alumno" });
