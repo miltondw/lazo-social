@@ -4,7 +4,7 @@ import filterSearch from "../../utils/filterSearch";
 import { getData } from "../../utils/fetchData";
 export default function Filter({ state }) {
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState(""); 
   const [club, setClub] = useState("");
 
   const { clubs } = state;

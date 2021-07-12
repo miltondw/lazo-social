@@ -25,8 +25,8 @@ class APIfeatures {
     excludeFields.forEach((el) => delete queryObj[el]);
 
     if (queryObj.club !== "all") this.query.find({ club: queryObj.club });
-    if (queryObj.title !== "all")
-      this.query.find({ title: { $regex: queryObj.title } });
+    if (queryObj.nombre !== "all")
+      this.query.find({ nombre: { $regex: queryObj.nombre } });
 
     this.query.find();
 

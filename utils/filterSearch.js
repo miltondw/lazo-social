@@ -7,7 +7,7 @@ const filterSearch = ({ router, page, club, sort, search }) => {
   if (search) query.search = search;
   if (sort) query.sort = sort;
 
-  router.push({
+  router.push({ 
     pathname: path,
     query: query,
   });

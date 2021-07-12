@@ -2,7 +2,7 @@ import { getData } from "../utils/fetchData";
 import filterSearch from "../utils/filterSearch";
 import { DataContext } from "../store/GlobalState";
 import AlumnoItem from "../components/AlumnoItem/AlumnoItem";
-import Filter from "../components/Filter/Filter";
+import Filter from "../components/Filter/Filter"; 
 import { useState, useContext, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -115,8 +115,9 @@ export async function getServerSideProps({ query }) {
   
 
   const res = await getData(
-    `alumno?limit=${page * 6}&club=${club}&sort=${sort}&title=${search}`
+    `alumno?limit=${page * 6}&club=${club}&sort=${sort}&nombre=${search}`
   );
+ 
   // server side rendering
   return {
     props: {
