@@ -53,46 +53,6 @@ export default function DetailProduct(props) {
         </h2>
         {alumno.exonerado ? <h3 className="text-info">Exonerado</h3> : ""}
         <div className="col-md-8">
-          {/*           
-          <div className="my-3 table-responsive">
-            <table
-              className="table-bordered table-hover  text-capitalize table"
-              style={{ minWidth: "600px", cursor: "pointer" }}
-            >
-              <thead className="bg-light font-weight-bold">
-                <tr>
-                  <td className="p-1 text-center">Club</td>
-                  <td className="p-1 text-center">C.I</td>
-                  <td className="p-1 text-center">Teléfono</td>
-                  <td className="p-1 text-center">Peso</td>
-                  <td className="p-1 text-center">Estatura</td>
-                  <td className="p-1 text-center">Observaciones</td>
-                  <td className="p-1 text-center">Edad</td>
-                  <td className="p-1 text-center">Fecha de nacimiento</td>
-                  <td className="p-1 text-center">Fecha de entrada</td>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td className="p-1 text-center">{alumno.club}</td>
-                  <td className="p-1 text-center">{alumno.cc}</td>
-                  <td className="p-1 text-center">{alumno.phone}</td>
-                  <td className="p-1 text-center">{alumno.weight}Kg</td>
-                  <td className="p-1 text-center">{alumno.size / 100}Mts</td>
-                  <td className="p-1 text-center">{alumno.observations}</td>
-                  <td className="p-1 text-center">{alumno.age}Años</td>
-                  <td className="p-1 text-center">
-                    {new Date(alumno.dateOfBirth).toLocaleDateString()}
-                  </td>
-                  <td className="p-1 text-center">
-                    {new Date(alumno.dateOfEntry).toLocaleDateString()}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          */}
           <div className="content-dbAlumnos">
             <div className="content-dbAlumnos_cart">
               <h3 className="content-dbAlumnos__title">
