@@ -15,9 +15,6 @@ export default function AlumnoItem({ alumno, handleCheck }) {
         <Link href={`crear/${alumno._id}`}>
           <a className="btn btn-info">Editar</a>
         </Link>
-        <Link href={`/alumno/${alumno._id}`}>
-          <a className="btn btn-info">Ver</a>
-        </Link>
         <button
           style={{ position: "relative", left: " 50%" }}
           className={`btn btn-danger `}
@@ -105,8 +102,10 @@ export default function AlumnoItem({ alumno, handleCheck }) {
         </p>
 
         <div className="row justify-content-between mx-0">
-          {/* {!auth.user || auth.user.role !== "admin" ? userLink() : adminLink()} */}
-          {adminLink()}
+          <Link href={`/alumno/${alumno._id}`}>
+            <a className="btn btn-info">Ver</a>
+          </Link>
+          {!auth.user || auth.user.role !== "admin" ? "" : adminLink()}
         </div>
       </div>
     </div>
