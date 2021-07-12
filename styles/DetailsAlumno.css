@@ -1,0 +1,56 @@
+.content-dbAlumnos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.content-dbAlumnos__nombre {
+    text-align: center;
+    margin: 1em;
+}
+
+
+
+.content-dbAlumnos__title {
+    text-align: center;
+    color: #2661c3;
+    text-decoration: underline;
+    padding-bottom: 0.2em;
+    display: grid;
+}
+
+.content-dbAlumnos__title>i {
+    font-size: 17px;
+    vertical-align: middle;
+    padding: 0.3em;
+
+}
+
+.content-dbAlumnos__parapraph {
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.content-dbAlumnos_cart:last-child {
+    grid-column: 1/-1;
+}
+
+@media (min-width:600px) {
+    .content-dbAlumnos__nombre {
+        width: 60%;
+    }
+
+    .content-dbAlumnos_cart {
+        margin: 1em;
+    }
+
+    .content-dbAlumnos {
+
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .content-dbAlumnos_cart:last-child {
+        grid-column: auto
+    }
+}

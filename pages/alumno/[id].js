@@ -37,7 +37,7 @@ export default function DetailProduct(props) {
               key={index}
               src={i.url}
               alt={i.title}
-              height={80}
+              height={100}
               width={100}
               className={`img-thumbnail rounded ${isActive(index)}`}
               style={{ width: "20%" }}
@@ -48,11 +48,12 @@ export default function DetailProduct(props) {
       </div>
 
       <div className="col-md-6 mt-3">
-        <h2 className="text-uppercase">
+        <h2 className="text-uppercase content-dbAlumnos__nombre">
           {alumno.nombre} {alumno.lastName}
         </h2>
         {alumno.exonerado ? <h3 className="text-info">Exonerado</h3> : ""}
         <div className="col-md-8">
+          {/*           
           <div className="my-3 table-responsive">
             <table
               className="table-bordered table-hover  text-capitalize table"
@@ -91,36 +92,80 @@ export default function DetailProduct(props) {
               </tbody>
             </table>
           </div>
+          */}
+          <div className="content-dbAlumnos">
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-cubes"></i>Club
+              </h3>
+              <p className="content-dbAlumnos__parapraph">{alumno.club}</p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-id-badge"></i>C.I
+              </h3>
+              <p className="content-dbAlumnos__parapraph">{alumno.cc}</p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                <i class="fas fa-phone-alt"></i>Teléfono
+              </h3>
+              <p className="content-dbAlumnos__parapraph">+57 {alumno.phone}</p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-weight"></i>Peso
+              </h3>
+              <p className="content-dbAlumnos__parapraph">{alumno.weight} Kg</p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-arrows-alt-v"></i>Estatura
+              </h3>
+              <p className="content-dbAlumnos__parapraph">
+                {alumno.size / 100} Mts
+              </p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-bullseye"></i>Observaciones
+              </h3>
+              <p className="content-dbAlumnos__parapraph">
+                {alumno.observations}
+              </p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-hourglass-start"></i>Edad
+              </h3>
+              <p className="content-dbAlumnos__parapraph">{alumno.age} Años</p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-calendar-alt"></i>Fecha de nacimiento
+              </h3>
+              <p className="content-dbAlumnos__parapraph">
+                {new Date(alumno.dateOfBirth).toLocaleDateString()}
+              </p>
+            </div>
+            <div className="content-dbAlumnos_cart">
+              <h3 className="content-dbAlumnos__title">
+                {" "}
+                <i class="fas fa-calendar-alt"></i>Fecha de entrada
+              </h3>
+              <p className="content-dbAlumnos__parapraph">
+                {new Date(alumno.dateOfEntry).toLocaleDateString()}
+              </p>
+            </div>
+          </div>
         </div>
-
-        {/* <div className="row mx-0 d-flex justify-content-between">
-          <h6 style={{ width: "auto", textTransform: "capitalize" }}>
-            Club: {alumno.club}
-          </h6>
-
-          <h6 style={{ width: "auto" }}>Edad: {alumno.age}</h6>
-
-          <h6 style={{ width: "auto" }}>
-            IMC:{" "}
-            <span
-              className={
-                IMC > 18.5 && IMC < 24.9 ? "text-normal" : "text-danger"
-              }
-            >
-              {IMC}
-            </span>
-          </h6>
-        </div>
-        <div className="row mx-0 d-flex justify-content-between">
-          <h6 style={{ width: "auto", textTransform: "capitalize" }}>
-            <i className="fas fa-phone-alt"></i>teléfono: {alumno.phone}
-          </h6>
-          <h6 style={{ width: "auto" }}>C.I: {alumno.cc}</h6>
-          <h6 style={{ width: "auto" }}>Peso: {alumno.weight}Kg</h6>
-          <h6 style={{ width: "auto" }}>Estatura: {alumno.size / 100}Mts</h6>
-        </div>
-
-        <div className="my-2">{alumno.observations}</div> */}
       </div>
     </div>
   );
