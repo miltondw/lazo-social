@@ -108,7 +108,7 @@ export default function Navbar() {
               <li className="nav-item">
                 <Link href="/signin">
                   <a className={"nav-link " + isActivo("/signin")}>
-                    <i className="fas fa-user"></i>
+                    <i className="fas fa-user mx-1"></i>
                     Iniciar sesión
                   </a>
                 </Link>

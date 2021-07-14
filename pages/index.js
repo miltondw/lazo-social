@@ -2,7 +2,7 @@ import { getData } from "../utils/fetchData";
 import filterSearch from "../utils/filterSearch";
 import { DataContext } from "../store/GlobalState";
 import AlumnoItem from "../components/AlumnoItem/AlumnoItem";
-import Filter from "../components/Filter/Filter"; 
+import Filter from "../components/Filter/Filter";
 import { useState, useContext, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -85,24 +85,30 @@ export default function Home(props) {
         ) : (
           ""
         ))}
-      <div className="products">
-        {alumnos.length === 0 ? (
-          <h2>No Hay Alumnos</h2>
-        ) : (
-          alumnos.map((p) => (
-            <AlumnoItem key={p._id} alumno={p} handleCheck={handleCheck} />
-          ))
-        )}
-      </div>
-      {props.result < page * 6 ? (
-        ""
+      {auth.user ? (
+        <>
+          <div className="products">
+            {alumnos.length === 0 ? (
+              <h2>No Hay Alumnos</h2>
+            ) : (
+              alumnos.map((p) => (
+                <AlumnoItem key={p._id} alumno={p} handleCheck={handleCheck} />
+              ))
+            )}
+          </div>
+          {props.result < page * 6 ? (
+            ""
+          ) : (
+            <button
+              className="btn btn-outline-info d-block mx-auto mb-4"
+              onClick={handleLoadmore}
+            >
+              Carga más
+            </button>
+          )}
+        </>
       ) : (
-        <button
-          className="btn btn-outline-info d-block mx-auto mb-4"
-          onClick={handleLoadmore}
-        >
-          Carga más
-        </button>
+        ""
       )}
     </div>
   );
@@ -112,12 +118,11 @@ export async function getServerSideProps({ query }) {
   const club = query.club || "all";
   const sort = query.sort || "";
   const search = query.search || "all";
-  
 
   const res = await getData(
     `alumno?limit=${page * 6}&club=${club}&sort=${sort}&nombre=${search}`
   );
- 
+
   // server side rendering
   return {
     props: {
