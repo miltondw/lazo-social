@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    BASE_URL: "https://lazo-social.vercel.app/",
+    BASE_URL: "https://lazo-social.vercel.app",
     MONGODB_URL:
       "mongodb+srv://miltondw:6N3ZMnJs46qTAG2t@cluster0.s2fjm.mongodb.net/next_ecommerce?retryWrites=true&w=majority",
     ACCESS_TOKEN_SECRET: "`S:&xbffA5LFD<!e5SptY^#w!,B!ajz`>^?%u',z`D\4zx%t",
