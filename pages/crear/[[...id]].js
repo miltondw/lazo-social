@@ -8,7 +8,7 @@ import getAge from "../../utils/getAge";
 export default function ProductsManager() {
   const initialState = {
     firstName: "",
-    lastName: "",
+    firstLastName: "",
     cc: 0,
     dateOfBirth: "",
     age: 0,
@@ -25,7 +25,7 @@ export default function ProductsManager() {
   const {
     firstName,
     age,
-    lastName,
+    firstLastName,
     cc,
     club,
     phone,
@@ -116,7 +116,7 @@ export default function ProductsManager() {
     if (
       !firstName ||
       !age ||
-      !lastName ||
+      !firstLastName ||
       !cc ||
       !club ||
       !phone ||
@@ -185,8 +185,8 @@ export default function ProductsManager() {
               <input
                 type="text"
                 className="d-block my-4 w-100 p-2"
-                name="lastName"
-                value={lastName}
+                name="firstLastName"
+                value={firstLastName}
                 placeholder="Apellido"
                 onChange={handleChangeInput}
               />

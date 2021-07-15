@@ -80,7 +80,7 @@ const createAlumno = async (req, res) => {
     const {
       firstName,
       age,
-      lastName,
+      firstLastName,
       cc,
       dateOfBirth,
       images,
@@ -97,7 +97,7 @@ const createAlumno = async (req, res) => {
     if (
       !firstName ||
       !age ||
-      !lastName ||
+      !firstLastName ||
       !cc ||
       !dateOfBirth ||
       !club ||
@@ -116,7 +116,7 @@ const createAlumno = async (req, res) => {
     const newAlumno = new Alumnos({
       firstName: firstName.toLowerCase(),
       age,
-      lastName: lastName.toLowerCase(),
+      firstLastName: firstLastName.toLowerCase(),
       cc,
       dateOfBirth,
       images,

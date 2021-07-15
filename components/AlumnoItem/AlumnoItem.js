@@ -74,7 +74,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
               textAlign: "center",
             }}
           >
-            {alumno.firstName} {alumno.lastName}
+            {alumno.firstName} {alumno.firstLastName}
           </h6>
 
           <h6 style={{ width: "auto", textTransform: "capitalize" }}>

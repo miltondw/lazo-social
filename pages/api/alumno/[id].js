@@ -41,7 +41,7 @@ const updateAlumno = async (req, res) => {
     const {
       firstName,
       age,
-      lastName,
+      firstLastName,
       cc,
       dateOfBirth,
       images,
@@ -58,7 +58,7 @@ const updateAlumno = async (req, res) => {
     if (
       !firstName ||
       !age ||
-      !lastName ||
+      !firstLastName ||
       !cc ||
       !dateOfBirth ||
       !club ||
@@ -78,7 +78,7 @@ const updateAlumno = async (req, res) => {
       {
         firstName: firstName.toLowerCase(),
         age,
-        lastName: lastName.toLowerCase(),
+        firstLastName: firstLastName.toLowerCase(),
         cc,
         dateOfBirth,
         images,
