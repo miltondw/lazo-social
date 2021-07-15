@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    dev:true,
+    dev:false,
     BASE_URL: "https://lazo-social.vercel.app",
     BASE_URL_DEV:"http://localhost:3000",
     MONGODB_URL:
