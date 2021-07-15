@@ -15,7 +15,7 @@ const alumnoSchema = new Schema(
     age: {
       type: Number,
     },
-    cc: {
+    ci: {
       type: Number,
       required: true,
     },

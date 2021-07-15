@@ -64,10 +64,7 @@ const updateAlumno = async (req, res) => {
       !club ||
       !phone ||
       !dateOfEntry ||
-      !weight ||
-      !size ||
       !sexo ||
-      !observations ||
       images.length === 0
     )
       return res
@@ -92,7 +89,7 @@ const updateAlumno = async (req, res) => {
         observations,
       }
     );
-    console.log(a)
+    console.log(a);
     res.json({ msg: "¡Éxito! Alumno Actualizado" });
   } catch (err) {
     return res.status(500).json({ err: err.message });

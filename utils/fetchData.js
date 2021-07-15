@@ -1,10 +1,15 @@
-const baseUrl = process.env.BASE_URL;
+let baseUrl;
+if (process.env.dev) {
+  baseUrl = process.env.BASE_URL_DEV;
+} else {
+  baseUrl = process.env.BASE_URL;
+}
 
 export const getData = async (url, token) => {
   const res = await fetch(`${baseUrl}/api/${url}`, {
     method: "GET",
     headers: {
-      "Authorization": token,
+      Authorization: token,
     },
   });
   const data = await res.json();
@@ -16,7 +21,7 @@ export const postData = async (url, post, token) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": token,
+      Authorization: token,
     },
     body: JSON.stringify(post),
   });
@@ -29,12 +34,12 @@ export const putData = async (url, post, token) => {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": token,
+      Authorization: token,
     },
     body: JSON.stringify(post),
   });
   const data = await res.json();
-  
+
   return data;
 };
 
@@ -43,7 +48,7 @@ export const patchData = async (url, post, token) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": token,
+      Authorization: token,
     },
     body: JSON.stringify(post),
   });
@@ -56,7 +61,7 @@ export const deleteData = async (url, token) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": token,
+      Authorization: token,
     },
   });
   const data = await res.json();

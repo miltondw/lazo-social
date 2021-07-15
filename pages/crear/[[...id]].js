@@ -120,10 +120,6 @@ export default function ProductsManager() {
       !ci ||
       !club ||
       !phone ||
-      !weight ||
-      !size ||
-      !sexo ||
-      !observations ||
       images.length === 0
     )
       return dispatch({

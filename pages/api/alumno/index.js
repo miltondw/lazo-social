@@ -103,10 +103,7 @@ const createAlumno = async (req, res) => {
       !club ||
       !phone ||
       !dateOfEntry ||
-      !weight ||
-      !size ||
       !sexo ||
-      !observations ||
       images.length === 0
     )
       return res
