@@ -79,9 +79,11 @@ const createAlumno = async (req, res) => {
 
     const {
       firstName,
+      secondName,
       age,
       firstLastName,
-      ci,
+      secondLastName,
+      cc,
       dateOfBirth,
       images,
       club,
@@ -98,7 +100,7 @@ const createAlumno = async (req, res) => {
       !firstName ||
       !age ||
       !firstLastName ||
-      !ci ||
+      !cc ||
       !dateOfBirth ||
       !club ||
       !phone ||
@@ -112,9 +114,11 @@ const createAlumno = async (req, res) => {
 
     const newAlumno = new Alumnos({
       firstName: firstName.toLowerCase(),
+      secondName: secondName.toLowerCase(),
       age,
       firstLastName: firstLastName.toLowerCase(),
-      ci,
+      secondLastName: secondLastName.toLowerCase(),
+      cc,
       dateOfBirth,
       images,
       club: club.toLowerCase(),

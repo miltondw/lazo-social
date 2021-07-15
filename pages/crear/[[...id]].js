@@ -8,8 +8,10 @@ import getAge from "../../utils/getAge";
 export default function ProductsManager() {
   const initialState = {
     firstName: "",
+    secondName: "",
     firstLastName: "",
-    ci: 0,
+    secondLastName: "",
+    cc: 0,
     dateOfBirth: "",
     age: 0,
     club: "",
@@ -24,16 +26,17 @@ export default function ProductsManager() {
   const [alumno, setAlumno] = useState(initialState);
   const {
     firstName,
+    secondName,
     age,
     firstLastName,
-    ci,
+    secondLastName,
+    cc,
     club,
     phone,
     weight,
     size,
     observations,
     exonerado,
-    sexo,
     dateOfBirth,
     dateOfEntry,
   } = alumno;
@@ -117,7 +120,7 @@ export default function ProductsManager() {
       !firstName ||
       !age ||
       !firstLastName ||
-      !ci ||
+      !cc ||
       !club ||
       !phone ||
       images.length === 0
@@ -164,9 +167,12 @@ export default function ProductsManager() {
       <Head>
         <title>Crear Alumno </title>
       </Head>
-      <form className="row" onSubmit={handleSubmit}>
-        <div className="col-md-6">
-          <div className="row">
+      <form className="row my-4" onSubmit={handleSubmit}>
+        <h2 className="text-normal p-1">Alumno</h2>
+        <div className="col-md-6 ">
+          <div className="row ">
+            <label htmlFor="names">Nombres</label>
+
             <div className="col-md-6">
               <input
                 type="text"
@@ -181,9 +187,33 @@ export default function ProductsManager() {
               <input
                 type="text"
                 className="d-block my-4 w-100 p-2"
+                name="secondName"
+                value={secondName}
+                placeholder="Segundo Nombre"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <label htmlFor="lastNames">Apellidos</label>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
                 name="firstLastName"
                 value={firstLastName}
-                placeholder="Apellido"
+                placeholder="Primer Apellido"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="secondLastName"
+                value={secondLastName}
+                placeholder="Segundo Apellido"
                 onChange={handleChangeInput}
               />
             </div>
@@ -191,18 +221,18 @@ export default function ProductsManager() {
 
           <div className="row">
             <div className="col-md-6">
-              <label htmlFor="price">C.I</label>
+              <label htmlFor="cc">C.I</label>
               <input
                 type="number"
                 className="d-block my-4 w-100 p-2"
-                name="ci"
-                value={ci}
+                name="cc"
+                value={cc}
                 placeholder="C.I"
                 onChange={handleChangeInput}
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="inStock">Télefono</label>
+              <label htmlFor="phone">Télefono</label>
 
               <input
                 type="number"
@@ -217,7 +247,7 @@ export default function ProductsManager() {
 
           <div className="row">
             <div className="col-md-6">
-              <label htmlFor="price">Fecha de nacimiento</label>
+              <label htmlFor="dateOfBirth">Fecha de nacimiento</label>
               <input
                 type="date"
                 className="d-block my-4 w-100 p-2"
@@ -228,7 +258,7 @@ export default function ProductsManager() {
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="inStock">Fecha de Entrada</label>
+              <label htmlFor="dateOfEntry">Fecha de Entrada</label>
 
               <input
                 type="date"
@@ -243,7 +273,7 @@ export default function ProductsManager() {
 
           <div className="row">
             <div className="col-md-6">
-              <label htmlFor="price">Peso</label>
+              <label htmlFor="weight">Peso</label>
               <input
                 type="number"
                 className="d-block my-4 w-100 p-2"
@@ -254,7 +284,7 @@ export default function ProductsManager() {
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="inStock">Estatura en "cm"</label>
+              <label htmlFor="size">Estatura en "cm"</label>
 
               <input
                 type="number"

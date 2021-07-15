@@ -40,9 +40,11 @@ const updateAlumno = async (req, res) => {
     const { id } = req.query;
     const {
       firstName,
+      secondName,
       age,
       firstLastName,
-      ci,
+      secondLastName,
+      cc,
       dateOfBirth,
       images,
       club,
@@ -59,7 +61,7 @@ const updateAlumno = async (req, res) => {
       !firstName ||
       !age ||
       !firstLastName ||
-      !ci ||
+      !cc ||
       !dateOfBirth ||
       !club ||
       !phone ||
@@ -74,9 +76,11 @@ const updateAlumno = async (req, res) => {
       { _id: id },
       {
         firstName: firstName.toLowerCase(),
+        secondName: secondName.toLowerCase(),
         age,
         firstLastName: firstLastName.toLowerCase(),
-        ci,
+        secondLastName: secondLastName.toLowerCase(),
+        cc,
         dateOfBirth,
         images,
         club: club.toLowerCase(),
@@ -89,7 +93,7 @@ const updateAlumno = async (req, res) => {
         observations,
       }
     );
-    console.log(a);
+    // console.log(a);
     res.json({ msg: "¡Éxito! Alumno Actualizado" });
   } catch (err) {
     return res.status(500).json({ err: err.message });

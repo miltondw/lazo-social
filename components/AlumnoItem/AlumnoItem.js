@@ -71,7 +71,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
             style={{
               width: "auto",
               textTransform: "capitalize",
-              textAlign: "center",
+              textAlign: "left",
             }}
           >
             {alumno.firstName} {alumno.firstLastName}
@@ -83,18 +83,22 @@ export default function AlumnoItem({ alumno, handleCheck }) {
         </div>
 
         <div className="row justify-content-between mx-0">
-          <h6 style={{ width: "auto" }}>Edad:{alumno.age}</h6>
+          <h6 style={{ width: "auto" }}>Edad:{alumno.age} Años</h6>
 
-          <h6 style={{ width: "auto" }}>
-            IMC:{" "}
-            <span
-              className={
-                IMC > 18.5 && IMC < 24.9 ? "text-normal" : "text-danger"
-              }
-            >
-              {IMC}
-            </span>
-          </h6>
+          {alumno.size && alumno.weight ? (
+            <h6 style={{ width: "auto" }}>
+              IMC:{" "}
+              <span
+                className={
+                  IMC > 18.5 && IMC < 24.9 ? "text-normal" : "text-danger"
+                }
+              >
+                {IMC}
+              </span>
+            </h6>
+          ) : (
+            <h6 style={{ width: "auto" ,textAlign:"center"}}>IMC: Por definir</h6>
+          )}
         </div>
 
         <p className="card-text" title={alumno.oservations}>
