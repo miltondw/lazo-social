@@ -39,11 +39,9 @@ const alumnoSchema = new Schema(
     },
     weight: {
       type: Number,
-      required: true,
     },
     size: {
       type: Number,
-      required: true,
     },
     sexo: {
       type: String,
