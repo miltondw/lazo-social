@@ -49,7 +49,7 @@ export default function DetailProduct(props) {
 
       <div className="col-md-6 mt-3">
         <h2 className="text-uppercase content-dbAlumnos__nombre">
-          {alumno.nombre} {alumno.lastName}
+          {alumno.firstName} {alumno.lastName}
         </h2>
         {alumno.exonerado ? <h3 className="text-info">Exonerado</h3> : ""}
         <div className="col-md-8">

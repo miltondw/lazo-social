@@ -2,7 +2,7 @@ import { model, Schema, models } from "mongoose";
 
 const alumnoSchema = new Schema(
   {
-    nombre: {
+    firstName: {
       type: String,
       required: true,
       trim: true,

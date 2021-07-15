@@ -25,8 +25,8 @@ class APIfeatures {
     excludeFields.forEach((el) => delete queryObj[el]);
 
     if (queryObj.club !== "all") this.query.find({ club: queryObj.club });
-    if (queryObj.nombre !== "all")
-      this.query.find({ nombre: { $regex: queryObj.nombre } });
+    if (queryObj.firstName !== "all")
+      this.query.find({ firstName: { $regex: queryObj.firstName } });
 
     this.query.find();
 
@@ -78,7 +78,7 @@ const createAlumno = async (req, res) => {
       return res.status(400).json({ err: "La autenticación no es válida.." });
 
     const {
-      nombre,
+      firstName,
       age,
       lastName,
       cc,
@@ -95,7 +95,7 @@ const createAlumno = async (req, res) => {
     } = req.body;
 
     if (
-      !nombre ||
+      !firstName ||
       !age ||
       !lastName ||
       !cc ||
@@ -114,7 +114,7 @@ const createAlumno = async (req, res) => {
         .json({ err: "Por favor Agregue todos los campos" });
 
     const newAlumno = new Alumnos({
-      nombre: nombre.toLowerCase(),
+      firstName: firstName.toLowerCase(),
       age,
       lastName: lastName.toLowerCase(),
       cc,

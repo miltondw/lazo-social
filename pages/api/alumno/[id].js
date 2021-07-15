@@ -39,7 +39,7 @@ const updateAlumno = async (req, res) => {
       return res.status(400).json({ err: "La autenticación no es válida." });
     const { id } = req.query;
     const {
-      nombre,
+      firstName,
       age,
       lastName,
       cc,
@@ -56,7 +56,7 @@ const updateAlumno = async (req, res) => {
     } = req.body;
 
     if (
-      !nombre ||
+      !firstName ||
       !age ||
       !lastName ||
       !cc ||
@@ -76,7 +76,7 @@ const updateAlumno = async (req, res) => {
     const a = await Alumnos.findOneAndUpdate(
       { _id: id },
       {
-        nombre: nombre.toLowerCase(),
+        firstName: firstName.toLowerCase(),
         age,
         lastName: lastName.toLowerCase(),
         cc,

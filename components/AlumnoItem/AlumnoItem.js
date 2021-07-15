@@ -28,7 +28,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
                 {
                   data: "",
                   id: alumno._id,
-                  title: alumno.nombre,
+                  title: alumno.firstName,
                   type: "DELETE_PRODUCT",
                 },
               ],
@@ -59,7 +59,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
       )}
       <Image
         src={alumno.images[0].url}
-        alt={alumno.nombre}
+        alt={alumno.firstName}
         width={100}
         height={240}
         className="card-img-top"
@@ -74,7 +74,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
               textAlign: "center",
             }}
           >
-            {alumno.nombre} {alumno.lastName}
+            {alumno.firstName} {alumno.lastName}
           </h6>
 
           <h6 style={{ width: "auto", textTransform: "capitalize" }}>

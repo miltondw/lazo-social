@@ -120,7 +120,7 @@ export async function getServerSideProps({ query }) {
   const search = query.search || "all";
 
   const res = await getData(
-    `alumno?limit=${page * 6}&club=${club}&sort=${sort}&nombre=${search}`
+    `alumno?limit=${page * 6}&club=${club}&sort=${sort}&firstName=${search}`
   );
 
   // server side rendering

@@ -7,7 +7,7 @@ import { postData, getData, putData } from "../../utils/fetchData";
 import getAge from "../../utils/getAge";
 export default function ProductsManager() {
   const initialState = {
-    nombre: "",
+    firstName: "",
     lastName: "",
     cc: 0,
     dateOfBirth: "",
@@ -23,7 +23,7 @@ export default function ProductsManager() {
   };
   const [alumno, setAlumno] = useState(initialState);
   const {
-    nombre,
+    firstName,
     age,
     lastName,
     cc,
@@ -114,7 +114,7 @@ export default function ProductsManager() {
       });
 
     if (
-      !nombre ||
+      !firstName ||
       !age ||
       !lastName ||
       !cc ||
@@ -175,9 +175,9 @@ export default function ProductsManager() {
               <input
                 type="text"
                 className="d-block my-4 w-100 p-2"
-                name="nombre"
-                value={nombre}
-                placeholder="Nombre"
+                name="firstName"
+                value={firstName}
+                placeholder="Primer Nombre"
                 onChange={handleChangeInput}
               />
             </div>
