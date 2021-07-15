@@ -66,7 +66,7 @@ export default function DetailProduct(props) {
                 {" "}
                 <i class="fas fa-id-badge"></i>C.I
               </h3>
-              <p className="content-dbAlumnos__parapraph">{alumno.cc}</p>
+              <p className="content-dbAlumnos__parapraph">{alumno.ci}</p>
             </div>
             <div className="content-dbAlumnos_cart">
               <h3 className="content-dbAlumnos__title">

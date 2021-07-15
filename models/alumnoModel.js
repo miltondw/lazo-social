@@ -7,13 +7,13 @@ const alumnoSchema = new Schema(
       required: true,
       trim: true,
     },
-    age: {
-      type: Number,
-    },
     firstLastName: {
       type: String,
       required: true,
       trim: true,
+    },
+    age: {
+      type: Number,
     },
     cc: {
       type: Number,

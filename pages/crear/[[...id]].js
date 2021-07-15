@@ -9,7 +9,7 @@ export default function ProductsManager() {
   const initialState = {
     firstName: "",
     firstLastName: "",
-    cc: 0,
+    ci: 0,
     dateOfBirth: "",
     age: 0,
     club: "",
@@ -26,7 +26,7 @@ export default function ProductsManager() {
     firstName,
     age,
     firstLastName,
-    cc,
+    ci,
     club,
     phone,
     weight,
@@ -117,7 +117,7 @@ export default function ProductsManager() {
       !firstName ||
       !age ||
       !firstLastName ||
-      !cc ||
+      !ci ||
       !club ||
       !phone ||
       !weight ||
@@ -199,8 +199,8 @@ export default function ProductsManager() {
               <input
                 type="number"
                 className="d-block my-4 w-100 p-2"
-                name="cc"
-                value={cc}
+                name="ci"
+                value={ci}
                 placeholder="C.I"
                 onChange={handleChangeInput}
               />
