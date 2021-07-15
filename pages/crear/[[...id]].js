@@ -6,7 +6,8 @@ import ImageUpload from "../../utils/ImageUpload";
 import { postData, getData, putData } from "../../utils/fetchData";
 import getAge from "../../utils/getAge";
 export default function ProductsManager() {
-  const initialState = {
+  // Alumno
+  const initialStateAlumno = {
     firstName: "",
     secondName: "",
     firstLastName: "",
@@ -22,8 +23,19 @@ export default function ProductsManager() {
     sexo: "",
     exonerado: false,
     observations: "",
+    nameFather: "",
+    lastNameFather: "",
+    secondNameFather: "",
+    secondLastNameFather: "",
+    nameMother: "",
+    lastNameMother: "",
+    secondNameMother: "",
+    secondLastNameMother: "",
+    phoneFather: 0,
+    phoneMother: 0,
   };
-  const [alumno, setAlumno] = useState(initialState);
+  const [alumno, setAlumno] = useState(initialStateAlumno);
+
   const {
     firstName,
     secondName,
@@ -39,14 +51,29 @@ export default function ProductsManager() {
     exonerado,
     dateOfBirth,
     dateOfEntry,
+    nameFather,
+    secondNameFather,
+    lastNameFather,
+    secondLastNameFather,
+    nameMother,
+    secondNameMother,
+    lastNameMother,
+    secondLastNameMother,
+    phoneFather,
+    phoneMother,
   } = alumno;
   const [images, setImages] = useState([]);
+  useEffect(() => {
+    setAlumno({ ...alumno, age: getAge(dateOfBirth) });
+  }, [dateOfBirth]);
+
+  // General
   const { state, dispatch } = useContext(DataContext);
   const { clubs, auth } = state;
-
   const router = useRouter();
   const { id } = router.query;
   const [onEdit, setOnEdit] = useState(false);
+  // Petición de alumos y Padres
   useEffect(() => {
     if (id) {
       setOnEdit(true);
@@ -56,13 +83,11 @@ export default function ProductsManager() {
       });
     } else {
       setOnEdit(false);
-      setAlumno(initialState);
+      setAlumno(initialStateAlumno);
       setImages([]);
     }
   }, [id]);
-  useEffect(() => {
-    setAlumno({ ...alumno, age: getAge(dateOfBirth) });
-  }, [dateOfBirth]);
+
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setAlumno({ ...alumno, [name]: value });
@@ -116,18 +141,10 @@ export default function ProductsManager() {
         payload: { error: "La autenticación no es válida." },
       });
 
-    if (
-      !firstName ||
-      !age ||
-      !firstLastName ||
-      !cc ||
-      !club ||
-      !phone ||
-      images.length === 0
-    )
+    if (!firstName || !age || !firstLastName )
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Agregue todos los campos. form" },
+        payload: { error: "Agregue todos los campos." },
       });
 
     dispatch({ type: "NOTIFY", payload: { loading: true } });
@@ -168,8 +185,9 @@ export default function ProductsManager() {
         <title>Crear Alumno </title>
       </Head>
       <form className="row my-4" onSubmit={handleSubmit}>
-        <h2 className="text-normal p-1">Alumno</h2>
         <div className="col-md-6 ">
+          <h2 className="text-normal p-1">Alumno</h2>
+
           <div className="row ">
             <label htmlFor="names">Nombres</label>
 
@@ -296,6 +314,7 @@ export default function ProductsManager() {
               />
             </div>
           </div>
+
           <div className="row">
             <div className="col-md-6">
               <h4>Sexo</h4>
@@ -372,8 +391,7 @@ export default function ProductsManager() {
               ))}
             </select>
           </div>
-        </div>
-        <div className="col-md-6">
+
           <div className="input-group mb-3">
             <span className="input-group-text">Subir</span>
             <input
@@ -397,9 +415,141 @@ export default function ProductsManager() {
             ))}
           </div>
         </div>
-        <button type="submit" className="btn btn-info mb-3 w-50 px-4 ">
-          {onEdit ? "Actualizar" : "Crear"}
-        </button>
+        <div className="col-md-6">
+          <h2 className="text-normal p-1">Padres</h2>
+
+          <div className="row ">
+            <label htmlFor="names">Nombres del Padre</label>
+
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="nameFather"
+                value={nameFather}
+                placeholder="Primer Nombre"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="secondNameFather"
+                value={secondNameFather}
+                placeholder="Segundo Nombre"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
+          <div className="row ">
+            <label htmlFor="names">Apellidos del Padre</label>
+
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="lastNameFather"
+                value={lastNameFather}
+                placeholder="Primer Apellido"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="secondLastNameFather"
+                value={secondLastNameFather}
+                placeholder="Segundo Apellido"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
+              <label htmlFor="phone">Télefono del Padre</label>
+              <input
+                type="number"
+                className="d-block my-4 w-100 p-2"
+                name="phoneFather"
+                value={phoneFather}
+                placeholder="Télefono"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
+          <div className="row ">
+            <label htmlFor="names">Nombres de la Madre</label>
+
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="nameMother"
+                value={nameMother}
+                placeholder="Primer Nombre"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="secondNameMother"
+                value={secondNameMother}
+                placeholder="Segundo Nombre"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
+          <div className="row ">
+            <label htmlFor="names">Apellidos de la Madre</label>
+
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="lastNameMother"
+                value={lastNameMother}
+                placeholder="Primer Apellido"
+                onChange={handleChangeInput}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="d-block my-4 w-100 p-2"
+                name="secondLastNameMother"
+                value={secondLastNameMother}
+                placeholder="Segundo Apellido"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
+              <label htmlFor="phone">Télefono de la Madre</label>
+              <input
+                type="number"
+                className="d-block my-4 w-100 p-2"
+                name="phoneMother"
+                value={phoneMother}
+                placeholder="Télefono"
+                onChange={handleChangeInput}
+              />
+            </div>
+          </div>
+
+          <button type="submit" className="btn btn-info mb-3 w-100 px-4 ">
+            {onEdit ? "Actualizar" : "Crear"}
+          </button>
+        </div>
       </form>
     </div>
   );

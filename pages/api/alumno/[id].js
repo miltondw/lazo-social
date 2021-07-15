@@ -55,20 +55,19 @@ const updateAlumno = async (req, res) => {
       sexo,
       exonerado,
       observations,
+      nameFather,
+      lastNameFather,
+      secondNameFather,
+      secondLastNameFather,
+      nameMother,
+      lastNameMother,
+      secondNameMother,
+      secondLastNameMother,
+      phoneFather,
+      phoneMother,
     } = req.body;
 
-    if (
-      !firstName ||
-      !age ||
-      !firstLastName ||
-      !cc ||
-      !dateOfBirth ||
-      !club ||
-      !phone ||
-      !dateOfEntry ||
-      !sexo ||
-      images.length === 0
-    )
+    if (!firstName || !age || !firstLastName)
       return res
         .status(400)
         .json({ err: "Por favor Agregue todos los campos." });
@@ -91,6 +90,16 @@ const updateAlumno = async (req, res) => {
         exonerado,
         sexo: sexo.toLowerCase(),
         observations,
+        nameFather: nameFather.toLowerCase(),
+        lastNameFather: lastNameFather.toLowerCase(),
+        secondNameFather: secondNameFather.toLowerCase(),
+        secondLastNameFather: secondLastNameFather.toLowerCase(),
+        nameMother: nameMother.toLowerCase(),
+        lastNameMother: lastNameMother.toLowerCase(),
+        secondNameMother: secondNameMother.toLowerCase(),
+        secondLastNameMother: secondLastNameMother.toLowerCase(),
+        phoneFather,
+        phoneMother,
       }
     );
     // console.log(a);

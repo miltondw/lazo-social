@@ -32,7 +32,6 @@ const alumnoSchema = new Schema(
     },
     images: {
       type: Array,
-      required: true,
     },
     club: {
       type: String,
@@ -65,6 +64,44 @@ const alumnoSchema = new Schema(
     checked: {
       type: Boolean,
       default: false,
+    },
+    nameFather: {
+      type: String,
+      trim: true,
+    },
+    lastNameFather: {
+      type: String,
+      trim: true,
+    },
+    secondNameFather: {
+      type: String,
+      trim: true,
+    },
+    secondLastNameFather: {
+      type: String,
+      trim: true,
+    },
+    nameMother: {
+      type: String,
+      trim: true,
+    },
+    lastNameMother: {
+      type: String,
+      trim: true,
+    },
+    secondNameMother: {
+      type: String,
+      trim: true,
+    },
+    secondLastNameMother: {
+      type: String,
+      trim: true,
+    },
+    phoneFather: {
+      type: Number,
+    },
+    phoneMother: {
+      type: Number,
     },
   },
   {

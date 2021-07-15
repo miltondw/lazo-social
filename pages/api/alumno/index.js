@@ -77,7 +77,7 @@ const createAlumno = async (req, res) => {
     if (result.role !== "admin")
       return res.status(400).json({ err: "La autenticación no es válida.." });
 
-    const {
+    let {
       firstName,
       secondName,
       age,
@@ -94,23 +94,31 @@ const createAlumno = async (req, res) => {
       sexo,
       exonerado,
       observations,
+      nameFather,
+      lastNameFather,
+      secondNameFather,
+      secondLastNameFather,
+      nameMother,
+      lastNameMother,
+      secondNameMother,
+      secondLastNameMother,
+      phoneFather,
+      phoneMother,
     } = req.body;
 
-    if (
-      !firstName ||
-      !age ||
-      !firstLastName ||
-      !cc ||
-      !dateOfBirth ||
-      !club ||
-      !phone ||
-      !dateOfEntry ||
-      !sexo ||
-      images.length === 0
-    )
+    if (!firstName || !age || !firstLastName)
       return res
         .status(400)
         .json({ err: "Por favor Agregue todos los campos" });
+
+    if (images.length === 0) {
+      images = [
+        {
+          public_id: "nextjs_media/vljjasiqanh4xd0xpatm",
+          url: "https://res.cloudinary.com/daekebmip/image/upload/v1626368601/nextjs_media/vljjasiqanh4xd0xpatm.png",
+        },
+      ];
+    }
 
     const newAlumno = new Alumnos({
       firstName: firstName.toLowerCase(),
@@ -129,6 +137,16 @@ const createAlumno = async (req, res) => {
       sexo: sexo.toLowerCase(),
       exonerado,
       observations,
+      nameFather: nameFather.toLowerCase(),
+      lastNameFather: lastNameFather.toLowerCase(),
+      secondNameFather: secondNameFather.toLowerCase(),
+      secondLastNameFather: secondLastNameFather.toLowerCase(),
+      nameMother: nameMother.toLowerCase(),
+      lastNameMother: lastNameMother.toLowerCase(),
+      secondNameMother: secondNameMother.toLowerCase(),
+      secondLastNameMother: secondLastNameMother.toLowerCase(),
+      phoneFather,
+      phoneMother,
     });
 
     await newAlumno.save();
