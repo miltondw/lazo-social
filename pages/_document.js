@@ -20,10 +20,6 @@ export default class MyDocument extends Document {
             integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
             crossorigin="anonymous"
           ></link>
-          {/* Paypal */}
-          <script
-            src={`https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}`}
-          ></script>
         </Head>
         <body>
           <Main />
