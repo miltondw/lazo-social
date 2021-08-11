@@ -80,13 +80,15 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <Link href="/">
-          <Image
-            src="https://res.cloudinary.com/daekebmip/image/upload/v1625269819/2F07089413BE4E9492D6B2302A63F5A0_grt44t.jpg"
-            alt="Logo Fundación Lazo Social"
-            width={120}
-            height={120}
-            className="logo"
-          />
+          <a>
+            <Image
+              src="https://res.cloudinary.com/daekebmip/image/upload/v1625269819/2F07089413BE4E9492D6B2302A63F5A0_grt44t.jpg"
+              alt="Logo Fundación Lazo Social"
+              width={120}
+              height={120}
+              className="logo"
+            />
+          </a>
         </Link>
         <button
           className="navbar-toggler"

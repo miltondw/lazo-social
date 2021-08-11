@@ -12,7 +12,7 @@ export default function AlumnoItem({ alumno, handleCheck }) {
   const adminLink = () => {
     return (
       <>
-        <Link href={`crear/${alumno._id}`}>
+        <Link href={`/crear/${alumno._id}`}>
           <a className="btn btn-info">Editar</a>
         </Link>
         <button
