@@ -10,7 +10,7 @@ export default async (req, res) => {
     const rf_token = req.cookies.refreshtoken;
     if (!rf_token) return res.status(400).json({ err: "¡Por Favor Inicia sesión ahora!" });
 
-    const result = jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET);
+    const result = jwt.verify(rf_token, process.env.NEXT_PUBLIC_REFRESH_TOKEN_SECRET);
     if (!result)
       return res
         .status(400)
