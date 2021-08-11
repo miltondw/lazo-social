@@ -7,9 +7,7 @@ export const DataProvider = ({ children }) => {
   const initialState = {
     notify: {},
     auth: {},
-    cart: [],
     modal: [],
-    orders: [],
     users: [],
     clubs: [],
   };
@@ -54,17 +52,6 @@ export const DataProvider = ({ children }) => {
   }, [cart]);
   useEffect(() => {
     if (auth.token) {
-      getData("order", auth.token).then((res) => {
-        if (res.err)
-          return dispatch({
-            type: "NOTIFY",
-            payload: {
-              error: res.err,
-            },
-          });
-        dispatch({ type: "ADD_ORDERS", payload: res.orders });
-      });
-
       if (auth.user.role === "admin") {
         getData("user", auth.token).then((res) => {
           if (res.err)
@@ -77,7 +64,6 @@ export const DataProvider = ({ children }) => {
           dispatch({ type: "ADD_USERS", payload: res.users });
         });
       } else {
-        dispatch({ type: "ADD_ORDERS", payload: [] });
         dispatch({ type: "ADD_USERS", payload: [] });
       }
     }

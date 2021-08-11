@@ -4,7 +4,6 @@ import { DataContext } from "../../store/GlobalState";
 import valid from "../../utils/valid";
 import { patchData } from "../../utils/fetchData";
 import ImageUpload from "../../utils/ImageUpload";
-import Link from 'next/link'
 export default function Profile() {
   const initialState = {
     avatar: "",
@@ -16,7 +15,7 @@ export default function Profile() {
   const { avatar, name, password, cf_password } = data;
 
   const { state, dispatch } = useContext(DataContext);
-  const { auth, orders, notify } = state;
+  const { auth, notify } = state;
 
   useEffect(() => {
     if (auth.user) setData({ ...data, name: auth.user.name });
@@ -105,15 +104,11 @@ export default function Profile() {
       <section className="row text-secondary my3">
         <div className="col-md-4">
           <h3 className="text-center text-uppercase">
-            {auth.user.role === "user" ? "Perfil de usuario" : "Perfil de Profesor"}
+            {auth.user.role === "user"
+              ? "Perfil de usuario"
+              : "Perfil de Profesor"}
           </h3>
           <div className="avatar">
-            {/* <Image
-              src={'blob:http://localhost:3000/e6d82acf-ef76-45a5-9022-97950480ae26'}
-              alt={auth.user.name}
-              width={150}
-              height={150}
-            /> */}
             <img
               src={avatar ? URL.createObjectURL(avatar) : auth.user.avatar}
               alt={auth.user.name}
@@ -173,7 +168,7 @@ export default function Profile() {
           </div>
           <div className="form-group">
             <label htmlFor="cf_password">
-            Confirmar contraseña
+              Confirmar contraseña
               <input
                 type="password"
                 name="cf_password"
@@ -194,57 +189,8 @@ export default function Profile() {
         </div>
         <div className="col-md-8">
           <h3 className="text-uppercase">
-          {auth.user.role === "user" ? "Datos" : "Alumnos"}
-
+            {auth.user.role === "user" ? "Datos" : "Alumnos"}
           </h3>
-{/* 
-          <div className="my-3 table-responsive">
-            <table
-              className="table-bordered table-hover w-100 text-uppercase"
-              style={{ minWidth: "600px", cursor: "pointer" }}
-            >
-              <thead className="bg-light font-weight-bold">
-                <tr>
-                  <td className="p-2">id</td>
-                  <td className="p-2">date</td>
-                  <td className="p-2">total</td>
-                  <td className="p-2">delivered</td>
-                  <td className="p-2">paid</td>
-                </tr>
-              </thead>
-
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order._id}>
-                    <td className="p-2">
-                      <Link href={`/order/${order._id}`}>
-                        <a>{order._id}</a>
-                      </Link>
-                    </td>
-                    <td className="p-2">
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </td>
-                    <td className="p-2">${order.total}</td>
-                    <td className="p-2">
-                      {order.delivered ? (
-                        <i className="fas fa-check text-success"></i>
-                      ) : (
-                        <i className="fas fa-times text-danger"></i>
-                      )}
-                    </td>
-                    <td className="p-2">
-                      {order.paid ? (
-                        <i className="fas fa-check text-success"></i>
-                      ) : (
-                        <i className="fas fa-times text-danger"></i>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        */}
         </div>
       </section>
     </div>
