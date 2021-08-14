@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
     clubs: [],
   };
   const [state, dispatch] = useReducer(reducers, initialState);
-  const { cart, auth } = state;
+  const { auth } = state;
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
 
