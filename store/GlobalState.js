@@ -40,18 +40,6 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const __next__cart01__devat = JSON.parse(
-      localStorage.getItem("__next__cart01__devat")
-    );
-
-    if (__next__cart01__devat)
-      dispatch({ type: "ADD_CART", payload: __next__cart01__devat });
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("__next__cart01__devat", JSON.stringify(cart));
-  }, [cart]);
-  useEffect(() => {
     if (auth.token) {
       if (auth.user.role === "admin") {
         getData("user", auth.token).then((res) => {
