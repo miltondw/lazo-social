@@ -36,6 +36,7 @@ export const DataProvider = ({ children }) => {
         payload: res.clubs,
       });
     });
+    return () => localStorage.clear();
   }, []);
 
   useEffect(() => {
