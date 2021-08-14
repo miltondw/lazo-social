@@ -30,7 +30,7 @@ export default function Navbar() {
           <a className="dropdown-item">Usuarios</a>
         </Link>
         <Link href="/crear">
-          <a className="dropdown-item">Crear alumno</a>
+          <a className="dropdown-item">Crear Votante</a>
         </Link>
         <Link href="/clubs">
           <a className="dropdown-item">Clubs</a>

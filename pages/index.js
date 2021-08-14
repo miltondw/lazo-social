@@ -16,9 +16,11 @@ export default function Home(props) {
   useEffect(() => {
     setProducts(props.alumnos);
   }, [props.alumnos]);
+
   useEffect(() => {
     if (Object.keys(router.query).length === 0) setPage(1);
   }, [router.query]);
+
   const handleCheck = (id) => {
     alumnos.forEach((p) => {
       if (p._id === id) p.checked = !p.checked;
