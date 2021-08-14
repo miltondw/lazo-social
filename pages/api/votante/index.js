@@ -1,6 +1,6 @@
 import connectDB from "../../../utils/connectDB";
 import Votantes from "../../../models/votanteModel";
-// import auth from "../../../middlewares/auth";
+import auth from "../../../middlewares/auth";
 connectDB();
 
 export default async (req, res) => {
