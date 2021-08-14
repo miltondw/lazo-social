@@ -74,10 +74,10 @@ const updateVotante = async (req, res) => {
         phone,
         dateOfEntry,
         sexo: sexo.toLowerCase(),
-        observations
+        observations,
       }
     );
-    console.log(a);
+
     res.json({ msg: "¡Éxito! Votante Actualizado" });
   } catch (err) {
     return res.status(500).json({ err: err.message });

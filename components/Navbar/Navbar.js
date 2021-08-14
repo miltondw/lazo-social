@@ -8,7 +8,7 @@ import Cookie from "js-cookie";
 export default function Navbar() {
   const router = useRouter();
   const { state, dispatch } = useContext(DataContext);
-  const { auth} = state;
+  const { auth } = state;
   const isActivo = (r) => {
     if (r === router.pathname) {
       return "active";
@@ -48,7 +48,7 @@ export default function Navbar() {
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          style={{ justifyContent: "space-around", width: " 7em" }}
+          style={{ justifyContent: "space-around", width: " 10em" }}
         >
           <Image
             src={auth.user.avatar}

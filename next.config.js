@@ -4,7 +4,6 @@ module.exports = {
       "res.cloudinary.com",
       "localhost",
       "blob:http://localhost",
-      "https://e-commerce-nextjs-kappa.vercel.app/",
     ],
   },
 };

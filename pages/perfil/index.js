@@ -3,7 +3,8 @@ import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../store/GlobalState";
 import valid from "../../utils/valid";
 import { patchData } from "../../utils/fetchData";
-import ImageUpload from "../../utils/ImageUpload";
+import { patchData } from "../../utils/fetchData";
+import { imageUpload } from "../../utils/ImageUpload";
 export default function Profile() {
   const initialState = {
     avatar: "",
@@ -74,7 +75,7 @@ export default function Profile() {
   const updateInfo = async () => {
     let media;
     // dispatch({ type: "NOTIFY", payload: { loading: true } });
-    if (avatar) media = await ImageUpload([avatar]);
+    if (avatar) media = await imageUpload([avatar]);
     patchData(
       "user",
       {
@@ -85,6 +86,7 @@ export default function Profile() {
     ).then((res) => {
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+      console.log(res)
       dispatch({
         type: "AUTH",
         payload: { token: auth.token, user: res.user },
@@ -189,7 +191,7 @@ export default function Profile() {
         </div>
         <div className="col-md-8">
           <h3 className="text-uppercase">
-            {auth.user.role === "user" ? "Datos" : "Votantes"}
+            {auth.user.role === "user" ? "Datos" : "Alumnos"}
           </h3>
         </div>
       </section>

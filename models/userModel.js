@@ -26,7 +26,7 @@ const userSchema = new Schema(
     avatar: {
       type: String,
       default:
-        "https://res.cloudinary.com/daekebmip/image/upload/v1623266972/17004_tsdq7h.png",
+        "https://res.cloudinary.com/didbvasyi/image/upload/v1628961986/lazo_politico/perfil-default_uadmbb.png",
     },
   },
   {

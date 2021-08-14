@@ -99,14 +99,14 @@ const createVotante = async (req, res) => {
         .status(400)
         .json({ err: "Por favor Agregue todos los campos" });
 
-    if (images.length === 0) {
-      images = [
-        {
-          public_id: "nextjs_media/vljjasiqanh4xd0xpatm",
-          url: "https://res.cloudinary.com/daekebmip/image/upload/v1626368601/nextjs_media/vljjasiqanh4xd0xpatm.png",
-        },
-      ];
-    }
+    // if (images.length === 0) {
+    //   images = [
+    //     {
+    //       public_id: "lazo_politico/v1628961986",
+    //       url: "https://res.cloudinary.com/didbvasyi/image/upload/v1628961986/lazo_politico/perfil-default_uadmbb.png",
+    //     },
+    //   ];
+    // }
 
     const newVotante = new Votantes({
       firstName: firstName.toLowerCase(),

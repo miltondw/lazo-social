@@ -47,6 +47,7 @@ export const patchData = async (url, post, token) => {
     },
     body: JSON.stringify(post),
   });
+
   const data = await res.json();
   return data;
 };
