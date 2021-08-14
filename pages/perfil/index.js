@@ -189,7 +189,7 @@ export default function Profile() {
         </div>
         <div className="col-md-8">
           <h3 className="text-uppercase">
-            {auth.user.role === "user" ? "Datos" : "Alumnos"}
+            {auth.user.role === "user" ? "Datos" : "Votantes"}
           </h3>
         </div>
       </section>

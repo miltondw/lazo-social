@@ -1,46 +1,46 @@
 import { getData } from "../utils/fetchData";
 import filterSearch from "../utils/filterSearch";
 import { DataContext } from "../store/GlobalState";
-import AlumnoItem from "../components/AlumnoItem/AlumnoItem";
+import VotanteItem from "../components/VotanteItem/VotanteItem";
 import Filter from "../components/Filter/Filter";
 import { useState, useContext, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 export default function Home(props) {
-  const [alumnos, setProducts] = useState(props.alumnos);
+  const [votantes, setVotantes] = useState(props.votantes);
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
   const [isCheck, setIsCheck] = useState(false);
   const [page, setPage] = useState(1);
   const router = useRouter();
   useEffect(() => {
-    setProducts(props.alumnos);
-  }, [props.alumnos]);
+    setVotantes(props.votantes);
+  }, [props.votantes]);
 
   useEffect(() => {
     if (Object.keys(router.query).length === 0) setPage(1);
   }, [router.query]);
 
   const handleCheck = (id) => {
-    alumnos.forEach((p) => {
+    votantes.forEach((p) => {
       if (p._id === id) p.checked = !p.checked;
     });
-    setProducts([...alumnos]);
+    setVotantes([...votantes]);
   };
   const handleCheckAll = () => {
-    alumnos.forEach((p) => (p.checked = !isCheck));
-    setProducts([...alumnos]);
+    votantes.forEach((p) => (p.checked = !isCheck));
+    setVotantes([...votantes]);
     setIsCheck(!isCheck);
   };
   const handleDeleteAll = () => {
     let deleteArr = [];
-    alumnos.forEach((p) => {
+    votantes.forEach((p) => {
       if (p.checked) {
         deleteArr.push({
           data: "",
           id: p._id,
-          title: "¿Eliminar todos los productos seleccionados? ",
-          type: "DELETE_PRODUCT",
+          title: "¿Eliminar todos los votanes seleccionados? ",
+          type: "DELETE_VOTANTE",
         });
       }
       dispatch({ type: "ADD_MODAL", payload: deleteArr });
@@ -59,7 +59,7 @@ export default function Home(props) {
       <Filter state={state} />
       {auth.user &&
         auth.user.role === "admin" &&
-        (alumnos.length !== 0 ? (
+        (votantes.length !== 0 ? (
           <div
             className="delete_all btn btn-danger mt-2"
             style={{ marginBottom: "-10px" }}
@@ -89,12 +89,16 @@ export default function Home(props) {
         ))}
       {auth.user ? (
         <>
-          <div className="products">
-            {alumnos.length === 0 ? (
-              <h2>No Hay Alumnos</h2>
+          <div className="votantes">
+            {votantes.length === 0 ? (
+              <h2>No Hay Votantes</h2>
             ) : (
-              alumnos.map((p) => (
-                <AlumnoItem key={p._id} alumno={p} handleCheck={handleCheck} />
+              votantes.map((v) => (
+                <VotanteItem
+                  key={v._id}
+                  votante={v}
+                  handleCheck={handleCheck}
+                />
               ))
             )}
           </div>
@@ -122,13 +126,13 @@ export async function getServerSideProps({ query }) {
   const search = query.search || "all";
 
   const res = await getData(
-    `alumno?limit=${page * 6}&club=${club}&sort=${sort}&firstName=${search}`
+    `votante?limit=${page * 6}&club=${club}&sort=${sort}&firstName=${search}`
   );
 
   // server side rendering
   return {
     props: {
-      alumnos: res.alumnos,
+      votantes: res.votantes,
       result: res.result,
     }, // will be passed to the page component as props
   };

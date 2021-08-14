@@ -16,7 +16,7 @@ export default function DetailVotante(props) {
   };
 
   return (
-    <div className="row detail_page product_detail">
+    <div className="row detail_page votante_detail">
       <Head>
         <title>Detalle del Votante</title>
       </Head>
@@ -45,65 +45,65 @@ export default function DetailVotante(props) {
       </div>
 
       <div className="col-md-6 mt-3">
-        <h2 className="text-uppercase content-dbAlumnos__nombre">
+        <h2 className="text-uppercase content-dbVotantes__nombre">
           {votante.firstName} {votante.firstLastName}
         </h2>
         <div className="col-md-8">
-          <div className="content-dbAlumnos">
-            <div className="content-dbAlumnos_cart">
-              <h3 className="content-dbAlumnos__title">
+          <div className="content-dbVotantes">
+            <div className="content-dbVotantes_cart">
+              <h3 className="content-dbVotantes__title">
                 {" "}
                 <i class="fas fa-cubes"></i>Club
               </h3>
-              <p className="content-dbAlumnos__parapraph">{votante.club}</p>
+              <p className="content-dbVotantes__parapraph">{votante.club}</p>
             </div>
-            <div className="content-dbAlumnos_cart">
-              <h3 className="content-dbAlumnos__title">
+            <div className="content-dbVotantes_cart">
+              <h3 className="content-dbVotantes__title">
                 {" "}
                 <i class="fas fa-id-badge"></i>C.I
               </h3>
-              <p className="content-dbAlumnos__parapraph">{votante.cc}</p>
+              <p className="content-dbVotantes__parapraph">{votante.cc}</p>
             </div>
-            <div className="content-dbAlumnos_cart">
-              <h3 className="content-dbAlumnos__title">
+            <div className="content-dbVotantes_cart">
+              <h3 className="content-dbVotantes__title">
                 <i class="fas fa-phone-alt"></i>Teléfono
               </h3>
-              <p className="content-dbAlumnos__parapraph">
+              <p className="content-dbVotantes__parapraph">
                 +57 {votante.phone}
               </p>
             </div>
 
-            <div className="content-dbAlumnos_cart">
-              <h3 className="content-dbAlumnos__title">
+            <div className="content-dbVotantes_cart">
+              <h3 className="content-dbVotantes__title">
                 {" "}
                 <i class="fas fa-bullseye"></i>Observaciones
               </h3>
-              <p className="content-dbAlumnos__parapraph">
+              <p className="content-dbVotantes__parapraph">
                 {votante.observations}
               </p>
             </div>
-            <div className="content-dbAlumnos_cart">
-              <h3 className="content-dbAlumnos__title">
+            <div className="content-dbVotantes_cart">
+              <h3 className="content-dbVotantes__title">
                 {" "}
                 <i class="fas fa-hourglass-start"></i>Edad
               </h3>
-              <p className="content-dbAlumnos__parapraph">{votante.age} Años</p>
+              <p className="content-dbVotantes__parapraph">{votante.age} Años</p>
             </div>
-            <div className="content-dbAlumnos_cart">
-              <h3 className="content-dbAlumnos__title">
+            <div className="content-dbVotantes_cart">
+              <h3 className="content-dbVotantes__title">
                 {" "}
                 <i class="fas fa-calendar-alt"></i>Fecha de nacimiento
               </h3>
-              <p className="content-dbAlumnos__parapraph">
+              <p className="content-dbVotantes__parapraph">
                 {new Date(votante.dateOfBirth).toLocaleDateString()}
               </p>
             </div>
-            <div className="content-dbAlumnos_cart">
-              <h3 className="content-dbAlumnos__title">
+            <div className="content-dbVotantes_cart">
+              <h3 className="content-dbVotantes__title">
                 {" "}
                 <i class="fas fa-calendar-alt"></i>Fecha de entrada
               </h3>
-              <p className="content-dbAlumnos__parapraph">
+              <p className="content-dbVotantes__parapraph">
                 {new Date(votante.dateOfEntry).toLocaleDateString()}
               </p>
             </div>

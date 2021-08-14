@@ -23,7 +23,7 @@ export default function Users() {
             <th>Avatar</th>
             <th>Nombre</th>
             <th>Correo</th>
-            <th>Profesor</th>
+            <th>Votante</th>
             <th>Acción</th>
           </tr>
         </thead>

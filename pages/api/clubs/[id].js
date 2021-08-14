@@ -1,6 +1,6 @@
 import connectDB from "../../../utils/connectDB";
 import Clubs from "../../../models/clubsModel";
-import Alumnos from "../../../models/alumnoModel"; 
+import Votantes from "../../../models/votanteModel";
 import auth from "../../../middlewares/auth";
 
 connectDB();
@@ -23,10 +23,7 @@ const updateClub = async (req, res) => {
       return res.status(400).json({ err: "La autenticación no es válida" });
     const { name } = req.body;
     const { id } = req.query;
-    const newClub = await Clubs.findOneAndUpdate(
-      { _id: id },
-      { name }
-    );
+    const newClub = await Clubs.findOneAndUpdate({ _id: id }, { name });
     res.json({
       msg: "¡Éxito! Al actualizar una nuevo Club",
       club: { ...newClub._doc, name },
@@ -41,10 +38,10 @@ const deleteClub = async (req, res) => {
     if (result.role !== "admin")
       return res.status(400).json({ err: "La autenticación no es válida" });
     const { id } = req.query;
-    const alumnos = await Alumnos.findOne({ club: id });
-    if (alumnos)
+    const votantes = await Votantes.findOne({ club: id });
+    if (votantes)
       return res.status(400).json({
-        err: "Elimine o edite todos los Alumnos con una relación",
+        err: "Elimine o edite todos los Votantes con una relación",
       });
 
     await Clubs.findByIdAndDelete(id);

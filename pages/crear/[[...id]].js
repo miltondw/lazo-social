@@ -5,9 +5,9 @@ import { DataContext } from "../../store/GlobalState";
 import ImageUpload from "../../utils/ImageUpload";
 import { postData, getData, putData } from "../../utils/fetchData";
 import getAge from "../../utils/getAge";
-export default function ProductsManager() {
-  // Alumno
-  const initialStateAlumno = {
+export default function VotanteManager() {
+  // Votante
+  const initialStateVotante = {
     firstName: "",
     secondName: "",
     firstLastName: "",
@@ -18,23 +18,10 @@ export default function ProductsManager() {
     club: "",
     phone: 0,
     dateOfEntry: "",
-    weight: 0,
-    size: 0,
     sexo: "",
-    exonerado: false,
     observations: "",
-    nameFather: "",
-    lastNameFather: "",
-    secondNameFather: "",
-    secondLastNameFather: "",
-    nameMother: "",
-    lastNameMother: "",
-    secondNameMother: "",
-    secondLastNameMother: "",
-    phoneFather: 0,
-    phoneMother: 0,
   };
-  const [alumno, setAlumno] = useState(initialStateAlumno);
+  const [votante, setVotante] = useState(initialStateVotante);
 
   const {
     firstName,
@@ -45,26 +32,13 @@ export default function ProductsManager() {
     cc,
     club,
     phone,
-    weight,
-    size,
     observations,
-    exonerado,
     dateOfBirth,
     dateOfEntry,
-    nameFather,
-    secondNameFather,
-    lastNameFather,
-    secondLastNameFather,
-    nameMother,
-    secondNameMother,
-    lastNameMother,
-    secondLastNameMother,
-    phoneFather,
-    phoneMother,
-  } = alumno;
+  } = votante;
   const [images, setImages] = useState([]);
   useEffect(() => {
-    setAlumno({ ...alumno, age: getAge(dateOfBirth) });
+    setVotante({ ...votante, age: getAge(dateOfBirth) });
   }, [dateOfBirth]);
 
   // General
@@ -73,24 +47,24 @@ export default function ProductsManager() {
   const router = useRouter();
   const { id } = router.query;
   const [onEdit, setOnEdit] = useState(false);
-  // Petición de alumos y Padres
+  // Petición de votantes
   useEffect(() => {
     if (id) {
       setOnEdit(true);
-      getData(`alumno/${id}`).then((res) => {
-        setAlumno(res.alumno);
-        setImages(res.alumno.images);
+      getData(`votante/${id}`).then((res) => {
+        setVotante(res.votante);
+        setImages(res.votante.images);
       });
     } else {
       setOnEdit(false);
-      setAlumno(initialStateAlumno);
+      setVotante(initialStateVotante);
       setImages([]);
     }
   }, [id]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    setAlumno({ ...alumno, [name]: value });
+    setVotante({ ...votante, [name]: value });
     dispatch({ type: "NOTIFY", payload: {} });
   };
   const handleUploadInput = (e) => {
@@ -131,7 +105,7 @@ export default function ProductsManager() {
     setImages(newArr);
   };
   const handleCheck = (check) => {
-    setAlumno({ ...alumno, exonerado: check });
+    setVotante({ ...votante, exonerado: check });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -141,7 +115,7 @@ export default function ProductsManager() {
         payload: { error: "La autenticación no es válida." },
       });
 
-    if (!firstName || !age || !firstLastName )
+    if (!firstName || !age || !firstLastName)
       return dispatch({
         type: "NOTIFY",
         payload: { error: "Agregue todos los campos." },
@@ -157,16 +131,16 @@ export default function ProductsManager() {
     let res;
     if (onEdit) {
       res = await putData(
-        `alumno/${id}`,
-        { ...alumno, images: [...imgOldURL, ...media] },
+        `votante/${id}`,
+        { ...votante, images: [...imgOldURL, ...media] },
         auth.token
       );
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
     } else {
       res = await postData(
-        "alumno",
-        { ...alumno, images: [...imgOldURL, ...media] },
+        "votante",
+        { ...votante, images: [...imgOldURL, ...media] },
         auth.token
       );
       if (res.err)
@@ -180,13 +154,13 @@ export default function ProductsManager() {
   }
   if (!auth.user) return null;
   return (
-    <div className="alumnos_manager">
+    <div className="votantes_manager">
       <Head>
-        <title>Crear Alumno </title>
+        <title>Crear Votante </title>
       </Head>
       <form className="row my-4" onSubmit={handleSubmit}>
         <div className="col-md-6 ">
-          <h2 className="text-normal p-1">Alumno</h2>
+          <h2 className="text-normal p-1">Votante</h2>
 
           <div className="row ">
             <label htmlFor="names">Nombres</label>
@@ -239,7 +213,7 @@ export default function ProductsManager() {
 
           <div className="row">
             <div className="col-md-6">
-              <label htmlFor="cc">C.I</label>
+              <label htmlFor="cc">Cédula de ciudania</label>
               <input
                 type="number"
                 className="d-block my-4 w-100 p-2"
@@ -291,32 +265,6 @@ export default function ProductsManager() {
 
           <div className="row">
             <div className="col-md-6">
-              <label htmlFor="weight">Peso</label>
-              <input
-                type="number"
-                className="d-block my-4 w-100 p-2"
-                name="weight"
-                value={weight}
-                placeholder="Peso"
-                onChange={handleChangeInput}
-              />
-            </div>
-            <div className="col-md-6">
-              <label htmlFor="size">Estatura en "cm"</label>
-
-              <input
-                type="number"
-                className="d-block my-4 w-100 p-2"
-                name="size"
-                value={size}
-                placeholder="Estatura"
-                onChange={handleChangeInput}
-              />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-6">
               <h4>Sexo</h4>
               <div className="form-check form-check-inline">
                 <input
@@ -342,23 +290,6 @@ export default function ProductsManager() {
                 />
                 <label className="form-check-label" htmlFor="inlineRadio2">
                   Femenino
-                </label>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <h4>Exonerado</h4>
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="exonerado"
-                  id="inlineRadio1"
-                  checked={exonerado}
-                  onChange={() => handleCheck(!exonerado)}
-                />
-
-                <label className="form-check-label" htmlFor="inlineRadio1">
-                  Sí
                 </label>
               </div>
             </div>
@@ -391,7 +322,8 @@ export default function ProductsManager() {
               ))}
             </select>
           </div>
-
+        </div>
+        <div className="col-md-6">
           <div className="input-group mb-3">
             <span className="input-group-text">Subir</span>
             <input
@@ -413,137 +345,6 @@ export default function ProductsManager() {
                 <span onClick={() => deleteImage(index)}>x</span>
               </div>
             ))}
-          </div>
-        </div>
-        <div className="col-md-6">
-          <h2 className="text-normal p-1">Padres</h2>
-
-          <div className="row ">
-            <label htmlFor="names">Nombres del Padre</label>
-
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="nameFather"
-                value={nameFather}
-                placeholder="Primer Nombre"
-                onChange={handleChangeInput}
-              />
-            </div>
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="secondNameFather"
-                value={secondNameFather}
-                placeholder="Segundo Nombre"
-                onChange={handleChangeInput}
-              />
-            </div>
-          </div>
-
-          <div className="row ">
-            <label htmlFor="names">Apellidos del Padre</label>
-
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="lastNameFather"
-                value={lastNameFather}
-                placeholder="Primer Apellido"
-                onChange={handleChangeInput}
-              />
-            </div>
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="secondLastNameFather"
-                value={secondLastNameFather}
-                placeholder="Segundo Apellido"
-                onChange={handleChangeInput}
-              />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-6">
-              <label htmlFor="phone">Télefono del Padre</label>
-              <input
-                type="number"
-                className="d-block my-4 w-100 p-2"
-                name="phoneFather"
-                value={phoneFather}
-                placeholder="Télefono"
-                onChange={handleChangeInput}
-              />
-            </div>
-          </div>
-
-          <div className="row ">
-            <label htmlFor="names">Nombres de la Madre</label>
-
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="nameMother"
-                value={nameMother}
-                placeholder="Primer Nombre"
-                onChange={handleChangeInput}
-              />
-            </div>
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="secondNameMother"
-                value={secondNameMother}
-                placeholder="Segundo Nombre"
-                onChange={handleChangeInput}
-              />
-            </div>
-          </div>
-
-          <div className="row ">
-            <label htmlFor="names">Apellidos de la Madre</label>
-
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="lastNameMother"
-                value={lastNameMother}
-                placeholder="Primer Apellido"
-                onChange={handleChangeInput}
-              />
-            </div>
-            <div className="col-md-6">
-              <input
-                type="text"
-                className="d-block my-4 w-100 p-2"
-                name="secondLastNameMother"
-                value={secondLastNameMother}
-                placeholder="Segundo Apellido"
-                onChange={handleChangeInput}
-              />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-md-6">
-              <label htmlFor="phone">Télefono de la Madre</label>
-              <input
-                type="number"
-                className="d-block my-4 w-100 p-2"
-                name="phoneMother"
-                value={phoneMother}
-                placeholder="Télefono"
-                onChange={handleChangeInput}
-              />
-            </div>
           </div>
 
           <button type="submit" className="btn btn-info mb-3 w-100 px-4 ">

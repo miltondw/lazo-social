@@ -60,7 +60,7 @@ h5.flex-fill.text-secondary.px-3.m-0 {
 
 /* Loading */
 @import url("./Loading.mudule.css");
-@import url("./Product.component.css");
+@import url("./Votante.component.css");
 @import url("./Profile.page.css");
-@import url("./ProductManager.page.css");
-@import url("./DetailsAlumno.css");
+@import url("./VotanteManager.page.css");
+@import url("./DetailsVotante.css");

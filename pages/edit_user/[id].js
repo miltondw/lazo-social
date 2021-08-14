@@ -102,7 +102,7 @@ export default function EditUser() {
             htmlFor="isAdmin"
             style={{ transform: "translate(4px, -3px)" }}
           >
-            Es profesor
+            Es Principal
           </label>
         </div>
 

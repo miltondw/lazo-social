@@ -14,54 +14,54 @@ export default async (req, res) => {
   }
 };
 
-// class APIfeatures {
-//   constructor(query, queryString) {
-//     this.query = query;
-//     this.queryString = queryString;
-//   }
-//   filtering() {
-//     const queryObj = { ...this.queryString };
+class APIfeatures {
+  constructor(query, queryString) {
+    this.query = query;
+    this.queryString = queryString;
+  }
+  filtering() {
+    const queryObj = { ...this.queryString };
 
-//     const excludeFields = ["page", "sort", "limit"];
-//     excludeFields.forEach((el) => delete queryObj[el]);
+    const excludeFields = ["page", "sort", "limit"];
+    excludeFields.forEach((el) => delete queryObj[el]);
 
-//     if (queryObj.club !== "all") this.query.find({ club: queryObj.club });
-//     if (queryObj.firstName !== "all")
-//       this.query.find({ firstName: { $regex: queryObj.firstName } });
+    if (queryObj.club !== "all") this.query.find({ club: queryObj.club });
+    if (queryObj.firstName !== "all")
+      this.query.find({ firstName: { $regex: queryObj.firstName } });
 
-//     this.query.find();
+    this.query.find();
 
-//     return this;
-//   }
+    return this;
+  }
 
-//   sorting() {
-//     if (this.queryString.sort) {
-//       const sortBy = this.queryString.sort.split(",").join("");
-//       this.query = this.query.sort(sortBy);
-//     } else {
-//       this.query = this.query.sort("-createdAt");
-//     }
+  sorting() {
+    if (this.queryString.sort) {
+      const sortBy = this.queryString.sort.split(",").join("");
+      this.query = this.query.sort(sortBy);
+    } else {
+      this.query = this.query.sort("-createdAt");
+    }
 
-//     return this;
-//   }
+    return this;
+  }
 
-//   paginating() {
-//     const page = this.queryString.page * 1 || 1;
-//     const limit = this.queryString.limit * 1 || 6;
-//     const skip = (page - 1) * limit;
-//     this.query = this.query.skip(skip).limit(limit);
-//     return this;
-//   }
-// }
+  paginating() {
+    const page = this.queryString.page * 1 || 1;
+    const limit = this.queryString.limit * 1 || 6;
+    const skip = (page - 1) * limit;
+    this.query = this.query.skip(skip).limit(limit);
+    return this;
+  }
+}
 
 const getVotantes = async (req, res) => {
   try {
-    // const features = new APIfeatures(Votantes.find(), req.query)
-    //   .filtering()
-    //   .sorting()
-    //   .paginating();
-    // const votantes = await features.query;
-    const votantes = await Votantes.find();
+    const features = new APIfeatures(Votantes.find(), req.query)
+      .filtering()
+      .sorting()
+      .paginating();
+    const votantes = await features.query;
+    // const votantes = await Votantes.find();
 
     res.json({
       status: "success",

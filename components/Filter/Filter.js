@@ -42,7 +42,7 @@ export default function Filter({ state }) {
         <input
           type="text"
           className="form-control"
-          list="title_product"
+          list="title_votante"
           value={search.toLowerCase()}
           onChange={(e) => setSearch(e.target.value)}
         />

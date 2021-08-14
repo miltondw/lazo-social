@@ -3,14 +3,14 @@ import Link from "next/link";
 import { useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
 
-export default function AlumnoItem({ votante }) {
+export default function VotanteItem({ votante }) {
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
 
   const adminLink = () => {
     return (
       <>
-        <Link href={`/politica/crear/${votante._id}`}>
+        <Link href={`/crear/${votante._id}`}>
           <a className="btn btn-info">Editar</a>
         </Link>
         <button
@@ -27,7 +27,7 @@ export default function AlumnoItem({ votante }) {
                   data: "",
                   id: votante._id,
                   title: votante.firstName,
-                  type: "DELETE_PRODUCT",
+                  type: "DELETE_VOTANTE",
                 },
               ],
             });
@@ -89,7 +89,7 @@ export default function AlumnoItem({ votante }) {
         </p>
 
         <div className="row justify-content-between mx-0">
-          <Link href={`/politica/votante/${votante._id}`}>
+          <Link href={`/votante/${votante._id}`}>
             <a className="btn btn-info">Ver</a>
           </Link>
           {!auth.user || auth.user.role !== "admin" ? "" : adminLink()}

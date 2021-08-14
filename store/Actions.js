@@ -2,9 +2,8 @@ export const ACTIONS = {
   NOTIFY: "NOTIFY",
   AUTH: "AUTH",
   ADD_MODAL: "ADD_MODAL",
-  ADD_ORDERS: "ADD_ORDERS",
-  ADD_USERS: "ADD_USERS",
   ADD_CLUBS: "ADD_CLUBS",
+  ADD_USERS: "ADD_USERS",
 };
 export const deleteItem = (data, id, type) => {
   const newData = data.filter((item) => item._id !== id);
