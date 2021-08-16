@@ -87,7 +87,9 @@ export default function DetailVotante(props) {
                 {" "}
                 <i class="fas fa-hourglass-start"></i>Edad
               </h3>
-              <p className="content-dbVotantes__parapraph">{votante.age} Años</p>
+              <p className="content-dbVotantes__parapraph">
+                {votante.age} Años
+              </p>
             </div>
             <div className="content-dbVotantes_cart">
               <h3 className="content-dbVotantes__title">
