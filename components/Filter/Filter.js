@@ -28,7 +28,7 @@ export default function Filter({ state }) {
           value={club}
           onChange={handleClub}
         >
-          <option value="all">Todos los Clubs</option>
+          <option value="all">Categorias</option>
 
           {clubs.map((item) => (
             <option key={item._id} value={item.name}>

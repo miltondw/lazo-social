@@ -32,8 +32,8 @@ export default function Navbar() {
         <Link href="/crear">
           <a className="dropdown-item">Crear Votante</a>
         </Link>
-        <Link href="/clubs">
-          <a className="dropdown-item">Clubs</a>
+        <Link href="/categorias">
+          <a className="dropdown-item">Categorias</a>
         </Link>
       </>
     );

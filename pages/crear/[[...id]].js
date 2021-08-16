@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../store/GlobalState";
-import ImageUpload from "../../utils/ImageUpload";
+import {imageUpload} from "../../utils/ImageUpload";
 import { postData, getData, putData } from "../../utils/fetchData";
 import getAge from "../../utils/getAge";
 export default function VotanteManager() {
@@ -40,7 +40,6 @@ export default function VotanteManager() {
   useEffect(() => {
     setVotante({ ...votante, age: getAge(dateOfBirth) });
   }, [dateOfBirth]);
-
   // General
   const { state, dispatch } = useContext(DataContext);
   const { clubs, auth } = state;
@@ -61,7 +60,6 @@ export default function VotanteManager() {
       setImages([]);
     }
   }, [id]);
-
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setVotante({ ...votante, [name]: value });
@@ -104,9 +102,6 @@ export default function VotanteManager() {
     newArr.splice(index, 1);
     setImages(newArr);
   };
-  const handleCheck = (check) => {
-    setVotante({ ...votante, exonerado: check });
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (auth.user.role !== "admin")
@@ -126,7 +121,7 @@ export default function VotanteManager() {
     const imgNewURL = images.filter((img) => !img.url);
     const imgOldURL = images.filter((img) => img.url);
 
-    if (imgNewURL.length > 0) media = await ImageUpload(imgNewURL);
+    if (imgNewURL.length > 0) media = await imageUpload(imgNewURL);
 
     let res;
     if (onEdit) {
@@ -149,10 +144,10 @@ export default function VotanteManager() {
 
     return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
   };
-  if (auth.user) {
-    if (!auth.user.root) return null;
-  }
-  if (!auth.user) return null;
+  // if (auth.user) {
+  //   if (!auth.user.root) return null;
+  // }
+  // if (!auth.user) return null;
   return (
     <div className="votantes_manager">
       <Head>

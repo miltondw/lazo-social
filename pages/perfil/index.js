@@ -3,7 +3,6 @@ import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../../store/GlobalState";
 import valid from "../../utils/valid";
 import { patchData } from "../../utils/fetchData";
-import { patchData } from "../../utils/fetchData";
 import { imageUpload } from "../../utils/ImageUpload";
 export default function Profile() {
   const initialState = {
@@ -14,14 +13,11 @@ export default function Profile() {
   };
   const [data, setData] = useState(initialState);
   const { avatar, name, password, cf_password } = data;
-
   const { state, dispatch } = useContext(DataContext);
   const { auth, notify } = state;
-
   useEffect(() => {
     if (auth.user) setData({ ...data, name: auth.user.name });
   }, [auth.user]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -53,28 +49,20 @@ export default function Profile() {
         type: "NOTIFY",
         payload: { error: "El archivo no existe." },
       });
-
     if (file.size > 1024 * 1024)
-      //1mb
       return dispatch({
         type: "NOTIFY",
         payload: { error: "El tamaño de imagen maximo es de 1 MB." },
       });
-
     if (file.type !== "image/jpeg" && file.type !== "image/png")
-      //1mb
       return dispatch({
         type: "NOTIFY",
         payload: { error: "El formato de la imagen no es soportado." },
       });
-
-    // let blob = new Blob([file], { type: "image/jpg" }),
-    //   url = URL.createObjectURL(blob);
     setData({ ...data, avatar: file });
   };
   const updateInfo = async () => {
     let media;
-    // dispatch({ type: "NOTIFY", payload: { loading: true } });
     if (avatar) media = await imageUpload([avatar]);
     patchData(
       "user",
@@ -86,7 +74,6 @@ export default function Profile() {
     ).then((res) => {
       if (res.err)
         return dispatch({ type: "NOTIFY", payload: { error: res.err } });
-      console.log(res)
       dispatch({
         type: "AUTH",
         payload: { token: auth.token, user: res.user },

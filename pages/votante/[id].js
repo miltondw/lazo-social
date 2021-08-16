@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState, useRef, useContext } from "react";
-import { DataContext } from "../../../store/GlobalState";
-import { getData } from "../../../utils/fetchData";
+import { DataContext } from "../../store/GlobalState";
+import { getData } from "../../utils/fetchData";
 import Image from "next/image";
 
 export default function DetailVotante(props) {
