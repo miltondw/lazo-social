@@ -2,10 +2,10 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../store/GlobalState";
-import {imageUpload} from "../../utils/ImageUpload";
+import { imageUpload } from "../../utils/ImageUpload";
 import { postData, getData, putData } from "../../utils/fetchData";
 import getAge from "../../utils/getAge";
-export default function VotanteManager() {
+export default function VotanteManager(props) {
   // Votante
   const initialStateVotante = {
     firstName: "",
@@ -20,9 +20,10 @@ export default function VotanteManager() {
     dateOfEntry: "",
     sexo: "",
     observations: "",
+    lider: "",
   };
   const [votante, setVotante] = useState(initialStateVotante);
-
+  const [votantes, setVotantes] = useState(props.votantes);
   const {
     firstName,
     secondName,
@@ -35,6 +36,7 @@ export default function VotanteManager() {
     observations,
     dateOfBirth,
     dateOfEntry,
+    lider,
   } = votante;
   const [images, setImages] = useState([]);
   useEffect(() => {
@@ -104,13 +106,13 @@ export default function VotanteManager() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (auth.user.role !== "admin")
-      return dispatch({
-        type: "NOTIFY",
-        payload: { error: "La autenticación no es válida." },
-      });
+    // if (auth.user.role !== "admin")
+    //   return dispatch({
+    //     type: "NOTIFY",
+    //     payload: { error: "La autenticación no es válida." },
+    //   });
 
-    if (!firstName || !age || !firstLastName)
+    if (!firstName || !firstLastName)
       return dispatch({
         type: "NOTIFY",
         payload: { error: "Agregue todos los campos." },
@@ -309,10 +311,27 @@ export default function VotanteManager() {
               onChange={handleChangeInput}
               className="form-select text-capitalize"
             >
-              <option value="all">Todos los Clubs</option>
+              <option value="all">Categorías</option>
               {clubs.map((item) => (
                 <option value={item.name} key={item._id}>
                   {item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="input-group-prepend px-0 my-2">
+            <select
+              name="lider"
+              id="lider"
+              value={lider}
+              onChange={handleChangeInput}
+              className="form-select text-capitalize"
+            >
+              <option value="all">Votantes</option>
+              {votantes.map((item) => (
+                <option value={item._id} key={item._id}>
+                  {item.firstName} {item.firstLastName}
                 </option>
               ))}
             </select>
@@ -349,4 +368,12 @@ export default function VotanteManager() {
       </form>
     </div>
   );
+}
+export async function getServerSideProps({ params: { id } }) {
+  const res = await getData(`votante?limit=3000&club=all&sort=&firstName=all`);
+  const votantes = [];
+  res.votantes.map((v) => (v.club !== "votantes" ? votantes.push(v) : ""));
+  return {
+    props: { votantes },
+  };
 }

@@ -57,6 +57,11 @@ export default function Home(props) {
         <title>Lazo Social</title>
       </Head>
       <Filter state={state} />
+      {auth.user && auth.user.role === "admin" ? (
+        <h3 className="text-center my-3">Personas Registradas= {props.total}</h3>
+      ) : (
+        ""
+      )}
       {auth.user &&
         auth.user.role === "admin" &&
         (votantes.length !== 0 ? (
@@ -128,12 +133,16 @@ export async function getServerSideProps({ query }) {
   const res = await getData(
     `votante?limit=${page * 6}&club=${club}&sort=${sort}&firstName=${search}`
   );
+  const total = await getData(
+    `votante?limit=3000&club=all&sort=&firstName=all`
+  );
 
   // server side rendering
   return {
     props: {
       votantes: res.votantes,
       result: res.result,
+      total: total.votantes.length,
     }, // will be passed to the page component as props
   };
 }

@@ -92,21 +92,22 @@ const createVotante = async (req, res) => {
       dateOfEntry,
       sexo,
       observations,
+      lider,
     } = req.body;
 
-    if (!firstName || !age || !firstLastName)
+    if (!firstName || !firstLastName)
       return res
         .status(400)
         .json({ err: "Por favor Agregue todos los campos" });
 
-    // if (images.length === 0) {
-    //   images = [
-    //     {
-    //       public_id: "lazo_politico/v1628961986",
-    //       url: "https://res.cloudinary.com/didbvasyi/image/upload/v1628961986/lazo_politico/perfil-default_uadmbb.png",
-    //     },
-    //   ];
-    // }
+    if (images.length === 0) {
+      images = [
+        {
+          public_id: "politica_media/p1ft15hzqpex9xf2ti2a",
+          url: "https://res.cloudinary.com/didbvasyi/image/upload/v1629221243/politica_media/p1ft15hzqpex9xf2ti2a.png",
+        },
+      ];
+    }
 
     const newVotante = new Votantes({
       firstName: firstName.toLowerCase(),
@@ -122,8 +123,9 @@ const createVotante = async (req, res) => {
       dateOfEntry,
       sexo: sexo.toLowerCase(),
       observations,
+      lider,
     });
-
+    console.log(newVotante);
     await newVotante.save();
 
     res.json({ msg: "!Éxito! Creó un nuevo Votante" });

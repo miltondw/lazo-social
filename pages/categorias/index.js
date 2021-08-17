@@ -47,7 +47,7 @@ export default function Clubs() {
   return (
     <div className="col-md-6 mx-auto my-3">
       <Head>
-        <title>Categorias</title>
+        <title>Categorías</title>
       </Head>
       <div className="input-group mb-3">
         <input

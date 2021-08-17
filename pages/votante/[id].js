@@ -3,9 +3,10 @@ import { useState, useRef, useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
 import { getData } from "../../utils/fetchData";
 import Image from "next/image";
-
+import VotanteItem from "../../components/VotanteItem/VotanteItem";
 export default function DetailVotante(props) {
   const [votante] = useState(props.votante);
+  const [votantes] = useState(props.votantes);
   const [tab, setTab] = useState(0);
 
   const { state, dispatch } = useContext(DataContext);
@@ -112,13 +113,28 @@ export default function DetailVotante(props) {
           </div>
         </div>
       </div>
+      <div className="detail_votante">
+        {votantes.length === 0 ? (
+          ""
+        ) : (
+          <h2>Numero de Votantes= {votantes.length}</h2>
+        )}
+        <div className="votantes">
+          {votantes.length === 0
+            ? ""
+            : votantes.map((v) => <VotanteItem key={v._id} votante={v} />)}
+        </div>
+      </div>
     </div>
   );
 }
 
 export async function getServerSideProps({ params: { id } }) {
   const res = await getData(`votante/${id}`);
+  const res2 = await getData(`votante?&club=all&sort=&firstName=all`);
+  const votantes = res2.votantes.filter((v) => v.lider == id);
+
   return {
-    props: { votante: res.votante },
+    props: { votante: res.votante, votantes },
   };
 }

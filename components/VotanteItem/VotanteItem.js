@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
 
-export default function VotanteItem({ votante }) {
+export default function VotanteItem({ votante, handleCheck }) {
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
 
@@ -55,13 +55,17 @@ export default function VotanteItem({ votante }) {
           onChange={() => handleCheck(votante._id)}
         />
       )}
-      <Image
-        src={votante.images[0].url}
-        alt={votante.firstName}
-        width={100}
-        height={240}
-        className="card-img-top"
-      />
+      {votante.images ? (
+        <Image
+          src={votante.images[0].url}
+          alt={votante.firstName}
+          width={100}
+          height={240}
+          className="card-img-top"
+        />
+      ) : (
+        ""
+      )}
 
       <div className="card-body">
         <div className="row justify-content-between mx-0">
@@ -76,7 +80,7 @@ export default function VotanteItem({ votante }) {
           </h6>
 
           <h6 style={{ width: "auto", textTransform: "capitalize" }}>
-            Club:{votante.club}
+            Categoría:{votante.club}
           </h6>
         </div>
 
@@ -89,9 +93,9 @@ export default function VotanteItem({ votante }) {
         </p>
 
         <div className="row justify-content-between mx-0">
-          <Link href={`/votante/${votante._id}`}>
-            <a className="btn btn-info">Ver</a>
-          </Link>
+          <a href={`/votante/${votante._id}`} className="btn btn-info">
+            Ver
+          </a>
           {!auth.user || auth.user.role !== "admin" ? "" : adminLink()}
         </div>
       </div>

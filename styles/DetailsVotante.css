@@ -54,3 +54,15 @@
         grid-column: auto
     }
 }
+
+/* Votantes */
+.detail_votante .votantes .card .card-body .row {
+    grid-template-columns: repeat(2, 1fr);
+    margin: auto !important;
+    width: 100%;
+}
+
+.detail_votante .votantes .card {
+
+    box-shadow: 1px 1px 7px 1px;
+}

@@ -36,8 +36,8 @@ const getVotante = async (req, res) => {
 const updateVotante = async (req, res) => {
   try {
     const result = await auth(req, res);
-    if (result.role !== "admin" || !result.root)
-      return res.status(400).json({ err: "La autenticación no es válida." });
+    // if (result.role !== "admin" || !result.root)
+    //   return res.status(400).json({ err: "La autenticación no es válida." });
     const { id } = req.query;
     const {
       firstName,
@@ -53,9 +53,10 @@ const updateVotante = async (req, res) => {
       dateOfEntry,
       sexo,
       observations,
+      lider
     } = req.body;
 
-    if (!firstName || !age || !firstLastName)
+    if (!firstName || !firstLastName)
       return res
         .status(400)
         .json({ err: "Por favor Agregue todos los campos." });
@@ -75,6 +76,7 @@ const updateVotante = async (req, res) => {
         dateOfEntry,
         sexo: sexo.toLowerCase(),
         observations,
+        lider
       }
     );
 

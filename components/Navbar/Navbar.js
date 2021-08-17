@@ -33,7 +33,7 @@ export default function Navbar() {
           <a className="dropdown-item">Crear Votante</a>
         </Link>
         <Link href="/categorias">
-          <a className="dropdown-item">Categorias</a>
+          <a className="dropdown-item">Categorías</a>
         </Link>
       </>
     );

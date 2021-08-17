@@ -54,7 +54,10 @@ const votanteSchema = new Schema(
     checked: {
       type: Boolean,
       default: false,
-    }
+    },
+    lider: {
+      type: String,
+    },
   },
   {
     timestamps: true,
