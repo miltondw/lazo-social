@@ -131,7 +131,7 @@ export default function DetailVotante(props) {
 
 export async function getServerSideProps({ params: { id } }) {
   const res = await getData(`votante/${id}`);
-  const res2 = await getData(`votante?&club=all&sort=&firstName=all`);
+  const res2 = await getData(`votante?limit=3000&club=all&sort=&firstName=all`);
   const votantes = res2.votantes.filter((v) => v.lider == id);
 
   return {
