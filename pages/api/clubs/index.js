@@ -25,7 +25,7 @@ const createClub = async (req, res) => {
     const newClub = new Clubs({ name: name.toLowerCase() });
     await newClub.save();
     res.json({
-      msg: "¡Éxito! Creó un nuevo Club.",
+      msg: "¡Éxito! Creó una nuevo Categoría.",
       newClub,
     });
   } catch (err) {

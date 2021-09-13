@@ -12,12 +12,12 @@ export default function Clubs() {
     if (auth.user.role !== "admin")
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Authentication is not vaild." },
+        payload: { error: "La autenticación no es válida." },
       });
     if (!name)
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Name cannot be left blank." },
+        payload: { error: "El nombre no puede dejarse en blanco." },
       });
     dispatch({ type: "NOTIFY", payload: { loading: true } });
     let res;

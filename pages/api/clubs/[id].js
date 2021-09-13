@@ -25,7 +25,7 @@ const updateClub = async (req, res) => {
     const { id } = req.query;
     const newClub = await Clubs.findOneAndUpdate({ _id: id }, { name });
     res.json({
-      msg: "¡Éxito! Al actualizar una nuevo Club",
+      msg: "¡Éxito! Al actualizar una nueva categoría",
       club: { ...newClub._doc, name },
     });
   } catch (err) {
@@ -45,7 +45,7 @@ const deleteClub = async (req, res) => {
       });
 
     await Clubs.findByIdAndDelete(id);
-    res.json({ msg: "¡Éxito! Club eliminado" });
+    res.json({ msg: "¡Éxito! Categoría eliminada" });
   } catch (err) {
     return res.status(500).json({ err: err.message });
   }
