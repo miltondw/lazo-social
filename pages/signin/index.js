@@ -71,7 +71,7 @@ export default function Signin() {
           Dirección de correo
           </label>
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Demo: estradamilton2001@gmail.com
+            {" "} Demo: estradamilton2001@gmail.com
           </label>
           <input
             type="email"
@@ -88,7 +88,7 @@ export default function Signin() {
             Contraseña
           </label>
  <label htmlFor="exampleInputPassword1" className="form-label">
-            Demo:milton123456
+            {" "}  Demo:milton123456
           </label>
           <input
             type="password"
